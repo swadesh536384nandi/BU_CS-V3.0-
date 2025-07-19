@@ -156,7 +156,7 @@ Sing In:
 ⦁	Frontend JS:
 ----------------------------------
 <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzugoEjR-OzpPlUX7ABSb9WZzlTLyuYUK3vMxEtq-jy7khcXIiNvpYvXh93yg02tRXfZg/exec';  // 🔗 Replace with your login backend URL
+        const scriptURL = 'Enter_your_url';  // 🔗 Replace with your login backend URL
         const form = document.forms['login-form'];
         const message = document.getElementById('login-message');
         const loginButton = document.querySelector('.login-btn');
