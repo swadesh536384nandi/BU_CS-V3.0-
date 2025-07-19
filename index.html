@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>
+			BU:CS
+		</title>
+		<script src="https://cdn.tailwindcss.com">
+		</script>
+		
+		<!-- Remove these script tags -->
+		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+		
+		<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+		<link rel="icon" href="https://lh3.googleusercontent.com/pw/AP1GczNO1Wjvu5H02biLUOhGj6H1gQfd-l2uhR0Pl7BDpDEEo-UUy9XGxxGAMAxYvLU1orC9p6Isv7W8ubIOZOl4ssg-wV33HiILmmz1GRN_d6Aezl6zXU99Apya8MEHxR_cJ15woi7O7xjhEdXfomm6aHy4=w691-h236-s-no-gm?authuser=0" size="32x32">
+			
+		<style>
+			body {
+				
+				font-family: 'Roboto', sans-serif;
+				overflow: auto;
+				background-color: green-800;
+				display:full
+				-webkit-user-select: none; /* Safari */
+				-moz-user-select: none;    /* Firefox */
+				-ms-user-select: none;     /* Internet Explorer/Edge */
+				user-select: none; 		
+			}
+			a:hover {
+				background-color: white;
+				text-decoration: underline;
+				text-decoration-color: black
+			}
+			
+			
+			.menu a {
+				cursor: pointer;
+				text: underline;
+				
+			}
+			.card {
+				background-color: white;
+				
+				display: inline-block;
+			}
+			
+			 pre {
+				color: #374151;
+				font-family: monospace;
+			}
+			
+		</style>
+	</head>
+	
+	<script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            // Disable Ctrl+C and Ctrl+U
+            if ((e.ctrlKey && (e.key === 'c' || e.key === 'u'))||(e.Key ==='Prt sc')) {
+                e.preventDefault();
+            }
+        });
+		const express = require('express');
+		const app = express();
+
+		app.get('/set-cookie', (req, res) => {
+		res.cookie('sessionId', 'your-session-id', {
+        httpOnly: true, // Prevents JavaScript access
+        secure: true,   // Ensures the cookie is sent only over HTTPS
+        sameSite: 'Strict' // Controls cross-origin requests
+		});
+		res.send('Secure cookie set!');
+		});
+
+		app.listen(3000, () => {
+		console.log('Server is running on https://localhost:3000');
+		});
+    </script>  
+	
+	<body class="bg-white w-full">
+		<header class="bg-blue-500 text-white p-5">
+			<div class="container mx-auto flex justify-between items-center">
+				
+				<img class="float-none"src="https://www.buruniv.ac.in/Demo/Images/bu_logo90.png" width="90" height="70">
+				<h1 class="text-3xl font-bold">
+					বর্ধমান বিশ্ববিদ্যালয়<br>The University of Burdwan
+				</h1>
+				
+				<div class="text-yellow-300 text-3xl font-bold hover:bg-black"id="dateTime"></div>
+			
+				<img class="mx-auto rounded-full w-20 h-20" src="https://lh3.googleusercontent.com/pw/AP1GczNbD8zEG2RsXGraKuX2lvnM1542NCVM8uQPlnUVcP8kdbCVIJFtPSZAZzFPVydIsDgVLI1LV2wz6XYQuCeDJHlrVs9UyjTjm6Mn73xX7RFcctrTekXjkYFKd635rHnr-9qTM-0afvaP-rB_RPf_zJkH=w768-h656-s-no-gm?authuser=0" width="103" height="70">
+				
+				<h3 class="text-2xl font-bold ">Department of Computer Science</h3>
+			</div>
+		</header>
+		
+		
+		<header class="bg-yellow-300 text-black p-2">
+			<div class="w-full  p-2 items-center">
+				<nav >
+					<ul class="flex space-x-8 text-2xl">
+						<li>
+							<a onclick="loadPage('home')"  href="#">
+							Home
+							</a>
+						</li>
+						
+						<li class="nav-item" role="presentation">
+							<a onclick="loadPage('about')"  href="#">
+							About
+							</a>
+						</li>
+						<li>
+							<a onclick="loadPage('faculties')"  href="#">
+							Faculties
+							</a>
+						</li>
+						<li>
+							<a onclick="loadPage('courses')"  href="#">
+							Courses
+							</a>
+						</li>
+						
+						<li>
+							<a onclick="loadPage('syllabus')"  href="#">
+							Syllabus
+							</a>
+						</li>
+						<li>
+							<a onclick="loadPage('notebook')" class="hover:underline" href="Signup.html" target="home">
+							 NoteBook
+							</a>
+						</li>
+						<li>
+							<a onclick="loadPage('pre_yea_ques')" class="hover:underline" href="#">
+							Old Question
+						</li>
+						<li>
+							<a onclick="loadPage('contact')"  href="#">
+							Contact Us
+							</a>
+						</li>	
+					</ul>
+				</nav>
+			</div>
+		</header>
+		
+		
+		
+		<div id="content" class="content">
+			<h4 class="text-4xl font-bold text-black text-center">Welcome to the Home Page</h2>
+			<!--<h3 class="text-6xl font-bold text-center text-red-600">***** the home section =>(V3.2) *****</h3> -->
+			<h2 
+				class="text-3xl font-bold text-green-500">
+				Click on 'NoteBook' option and download the ppt and pdf your need.
+			</h2>
+		</div>
+		
+		<script>
+			function loadPage(page) 
+			{
+				/*
+					1. Home				2.About				3. faculties
+					4. Gellary			5.Contact			6. COURSES
+					7.syllabus			8.NoteBook			9.pre_yea_ques
+					10. address/map				
+				*/
+			
+				let contentDiv = document.getElementById("content");
+				
+				if (page === "home")
+				{
+					contentDiv.innerHTML = `
+						<h4 class="text-4xl font-bold text-black text-center text-cyan-400">Welcome to the Home Page</h4>
+						<h3 class="text-6xl font-bold text-center text-red-600">***** the home section =>(V3.2) *****</h3>
+						<h2 class="text-3xl px-10 font-bold text-green-500">Click on 'NoteBook' option and download the ppt and pdf your need.</h2>
+					`;
+				} 
+				else if (page === "about")
+				{
+					contentDiv.innerHTML = `
+						<h2 class="text-5xl text-center font-bold text-green-600 p-5">About</h2>
+					
+						<div class="bg-red-200">
+							<br>
+							<h2 class="text-black text-4xl font-bold"> 
+								Departmental Profile: <br>-------------------------------
+							</h2>
+							<a 
+								class="text-blue-600 text-2xl"
+								href="https://drive.google.com/file/d/1kHEMF0RRx4LWzAdWfiqDzvJHe1M7jWjS/view?usp=sharing">
+								Click here to view Departmental profile.
+							</a>
+							<br><br>
+						</div>
+						<br>
+						<div class="bg-gray-200">
+							<h2 class="text-black text-4xl">Teacher-In-Charge, Computer Science: </h2>
+						</div>
+						
+						<div class="bg-gray-200 "> <!-- ***Semester – I *** -->
+						<br>
+							<div class=" w-full grid grid-cols-4 md:grid-cols-2 lg:grid-cols-2 gap-8 p-5 bg-yellow-200">
+									
+									<div class="font-bold">
+										<p class="flex justify-center">
+											<img alt="Teacher's picture" class="mx-auto rounded-full w-48 h-48"  src="https://buruniv.irins.org/assets/profile_images/248464.png"></img>
+										</p>
+										<br>
+										<p class="text-black text-gray-700">
+											<pre class="text-2xl">Name:				Mr. Parthajit Roy</pre>
+											<pre class="text-2xl">Designation:   		Assistant Professor</pre>
+											<pre class="text-2xl">Department:    		Computer Science</pre>
+											<pre class="text-2xl">Qualification: 		M.C.A. ,Ph.D</pre>
+											<pre class="text-2xl">Academic Profile:	<a class="text-blue-700 text-underline" href="" target="_blank" >Click here to view detailed profile.</a></pre>
+											<pre class="text-2xl">Vidwan URL:		   <a class="text-blue-700" href="" target="_blank" >Teacher web link</a></pre>
+										</p>
+									</div>
+									
+									<div class="font-bold">
+										<p class=" text-black text-2xl text-center p-5 py-8">
+											<br><br><br><br><br><br><br><br><br><br><br><br>
+													 ~~Address~~	<br>	
+											Department of Computer Science<br>
+											The University of Burdwan<br>
+											Golapbag, Bardhaman - 713104<br>
+											West Bengal, INDIA.<br>
+											<a class="text-dark" href="mailto:hod@cs.buruniv.ac.in" >Email   : hod@cs.buruniv.ac.in</a>	
+										</p>
+									</div>
+							</div>
+							
+						</div>
+					`;
+				}
+				else if(page === "faculties")
+				{
+					const faculties_list =[
+						/*0*/{
+								hoverColor: "hover:bg-green-300",
+								Name: "Prof. Abhoy Chand Mondal",
+								Designation: "Professor",
+								Department: "Computer Science",
+								Qualification: "M.Sc.,M.C.A.,Ph.D.",
+								Academic_Profile: "https://www.buruniv.ac.in/Downloads/Biodata/EMP_1965_AbhoyChandMondal.pdf", 
+								Specialisation: "Fuzzy Logic, Genetic Algorithm, Parallel Computing, Cellular Computing",
+								Vidwan_URL: "https://buruniv.irins.org/profile/232307",
+								picture: "https://irins.inflibnet.ac.in/assets/profile_images/2323072.jpeg"
+							},
+							{
+								hoverColor: "hover:bg-cyan-300",
+								Name: "Prof. Sunil Karforma",
+								Designation: "Professor",
+								Department: "Computer Science",
+								Qualification: "B.C.S.E.,M.C.S.E.,Ph.D.",
+								Academic_Profile: "https://www.buruniv.ac.in/Downloads/Biodata/EMP_2030_SunilKarforma.pdf", 
+								Specialisation: "AI, Network Security, Database security, E-commerce security,E-governance security, Recommender system design, DRM",
+								Vidwan_URL: "https://buruniv.irins.org/profile/196970",
+								picture: "https://lh3.googleusercontent.com/pw/AP1GczPoDbWqv0V7M0odNJ0UAXP9rJTuaI0Jyqa1-AI26NNgZnxN6mjxHdDiWXPvHEQnPKtnsjq9v5_lBwyeNUV8mo5NqRjLmHFP_iqqCY7tbG6dS5FskU0G5JvciWLXum6_OEw4Wn1U59c7_wblapWFRusW=w309-h298-s-no?authuser=0"
+							},
+							{
+								hoverColor: "hover:bg-yellow-300",
+								Name: "Mr. Parthajit Roy",
+								Designation: "Assistant Professor",
+								Department: "Computer Science",
+								Qualification: "M.C.A.,Ph.D",
+								Academic_Profile: "https://www.buruniv.ac.in/Downloads/Biodata/EMP_2383_ParthajitRoy.pdf",
+								Specialisation: "NA",
+								Vidwan_URL: "https://buruniv.irins.org/profile/248464",
+								picture: "https://irins.inflibnet.ac.in/assets/profile_images/248464.png"
+							},
+						/*3*/{
+								hoverColor: "hover:bg-red-400",
+								Name: "Mr. Rahul Karmakar",
+								Designation: "Assistant Professor",
+								Department: "Computer Science",
+								Qualification: "B.Tech, M.Tech, Ph.D.",
+								Academic_Profile: "https://buruniv.irins.org/profile/232163",
+								Specialisation: "NA",
+								Vidwan_URL:"https://buruniv.irins.org/profile/232163",
+								picture: "https://lh3.googleusercontent.com/a/AATXAJzEYLC1zD-NWGeFhVZoHm4VyJEV3eTO8w3qmN0=s96-c"
+							}
+					]; 
+					
+					// Function to generate course cards
+					function generate_faculties(courses, startIndex, endIndex) {
+						let cards_line = '';
+						for (let i = startIndex; i < endIndex; i++) {
+							const facultie = faculties_list[i];
+							cards_line += `
+								<div class="card bg-base-100 p-3  w-100vw h-100vh shadow-xl rounded-lg shadow-lg ${facultie.hoverColor}">
+									<div class="items-right-side">
+											<img alt="Teacher's picture" class="mx-auto rounded-full w-48 h-48"  src="${facultie.picture}"></img>
+									</div>
+									<div class="font-bold">
+										<p class="text-gray-700">
+											<pre class="text-2xl">Name:				${facultie.Name}</pre>
+											<pre class="text-2xl">Designation:   		${facultie.Designation}</pre>
+											<pre class="text-2xl">Department:    		${facultie.Department}</pre>
+											<pre class="text-2xl">Qualification: 		${facultie.Qualification}</pre>
+											<pre class="text-2xl">Academic Profile:	<a class="text-blue-700 text-underline" href="${facultie.Academic_Profile}" target="_blank" >Click here to view detailed profile</a></pre>
+										    <div class="text-2xl text-gray-700">
+												Specialization:<p class="text-2xl px-40 mx-24 text-gray-700">	${facultie.Specialisation}</p>
+											</div>
+											<pre class="text-2xl">Vidwan URL:		   <a class="text-blue-700" href="${facultie.Vidwan_URL}" target="_blank" >Teacher web link</a></pre>
+										</p>
+									</div>
+								
+								</div>
+							`;
+						}
+						return cards_line;
+					}
+					contentDiv.innerHTML = `
+						
+						<h2 class="text-6xl text-center font-bold text-pink-600">Faculties</h2>
+						
+						<div class="bg-gray-200 "> <!-- ***Semester – I *** -->
+						<br><br>
+							<div class=" w-full grid grid-cols-4 md:grid-cols-1 lg:grid-cols-1 gap-8 px-5">
+								${generate_faculties(faculties_list, 0, faculties_list.length)}
+							</div>
+							<br><br>
+						</div>
+					`;
+				}
+				
+				// =======================================CREATE Gellary Function===========================================
+				else if(page === "gellary")
+				{
+					const gellarys =[
+					/* 1 */	{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczPp1Zlgwmnac_flBdYsudDzYC-31IciY7IIinq1y2AZWKDiR4brmFtjki9GIHTlfs5uA1QjPk8lz5eV7i4GgnKCkyQStmpjJHJxvTORzus4N4uhgyQcI4tAMVueNxUw1OU3phLMPJW1sUrHVk89R8YNZw=w1397-h786-s-no?authuser=0", 
+								alt : "_blank",
+								type : "picture"
+							},
+					/* 2 */	{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczMD7QeHX2wN7S3dYZPLDJ-4x9eESrLqUfe9v6nZzW55QxV1VyiJ2orycqL3TS3i9BWnVkvGIfnw1heXLeFts2YAnZcNx3KU8_cBi-sOYANrNgl49bxfb_FrqfeVxdpU5Y7v81_pm4jyHYMpjGLKm0nXxg=w1397-h786-s-no?authuser=0", 
+								alt : "_blank",
+								type : "picture"
+							},
+					/* 3 */	{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczNYPcAdlEUamj5ZEVCARKM7qRiVSdf60EwALWQIglhaNdMDIhAdV1uDDVTo5UJc8p9t4unTWKMJ7G97T9nYUQC1X4iLo1_rWuSsiLeGRh58aXfYAlI3YuqHOL1oR5TWQlfQbIPykeurp27DZztFOUj-cA=w1048-h786-s-no?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+							{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczM4DWOaNFTkyxMDmEfW92XQZVbTi_XdKmyezawR2vtLf-r3jGZvcx1k5GIX09vY6EMJGFTcLMaCxncYe7_qrBjrwVfhRZeli1To5qxjWHGG9iGc5zZj_dFbD2XHRcIRoNx4LKv9PQcAtGIm4Ipxo_wypA=w1048-h786-s-no?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+					/* 5 */	{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczMDLpmXwOJMrVO3zp8WdNSxfryuVIhBG88py9c_1eGw6prbV2gWG3jS6AwIv-4pVsn9S4qLTQjUWGbu7Kdk7Gmy9uxtSqAt5T72PEobCRg8ZG7e0CTSYUfafuXJ3ZADgpVRcpnd7fC_Pq6zmKueRIdwVQ=w1048-h786-s-no?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+							{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOvcjpUWP3mFqTGfQLB51O02H7doWmYqJwAB_MT8U4TJtim-3s9lMdKTQ_L7KRKsACpbtHnNGA-1tQ9zb4E-sINi4o6Go-dma85jYXFtB4_g6ziKBCHtZNKVzMy7_FoOaAUTHhCjrPR5OT0qyAJT2JHEA=w1397-h786-s-no?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+					/* 7 */	{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczM_7LdyURx27rmJsD9-CHoK33RFGgjTnSxBhdmggghxX1Hdipsi5VIGbEUKysoO8QfJ0d60n__4CNQqainvIpK2k1_BtQaviQKxK6_jhrVD3LbIep5tnwtx1F2iZd1yo30LozkoH3Aao-lVgZMJDY1vrw=w1048-h786-s-no?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+					/* 8 */	{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOcNiD3sLWkIhiFH5QZilzqb_CZzEk3eBCosY6-ZYnjeHU52iDuWxbwcCOgerI-_q-clU2jwUg8740oG8XgkzkcR1S1TWtif20Kv2VUu9aHQj8bHfFsXzTLmmjfUoYbjKx2s3MUg5A4PQpClIRhUULCVA=w1048-h786-s-no?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+							{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczMI3oYt13bsZA6BSpP3fEqoOJyBFuuJczVU34BPHf8jpR-zwcGJsbgi-OpJVeWPMwNN_GDFczA2N3DyiYUxEfh1yRsgcRCmgifPTagZXYBY4AYCAhdLW8Lpqo7a8fw6AcGof0HtFAgU0TOEYSsgs7NvAA=w1048-h786-s-no?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+							{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOZPmjp-lHxzwzMjWELCPppGyWMxReZ4rysyovkGICtre6IbggpEsgXzak4xp-xipg_88A5-J1BGy0J7stYpoScAkkrGqwmYfFwAGWkjLoDtajiNIJIKx4lmbZhpdq159fCfAi-_1WysyEi4Qo8nkeX8g=w1048-h786-s-no?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+							{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOEK6EXrwJkOaKIkaf7znUoZnQHbN4ifM1hzu2blgicDN8kVFzt3cvKwV9DkJK4Y5rmFLeb05rEqehPRWPDvYS1uzTHJNtcPhBsRIOqZYaOyy6zTQAU1E15GIWKtOi93tT57q2HMg42h9WDr9WSMUTRAQ=w1048-h786-s-no?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+							{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOZfG03hKBSr2LD4BzNf-ybVFbgLuAhs7SImoSrpzql1NpBoQqjZSg0wEsfKqtq7L_b_NgXOptqIxZdcgWgKMAUWiunXBXqcpJ3wsiCPYhkb3n8culjb8EHYqiwDPSk991Ee5oEc4PBgpkzFy46L6niVg=w1042-h790-s-no-gm?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+							{
+								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczNHHHb-EGvAKRCIgmNXd-SNWKrNo_VsuuWD6-2MNazZZFjwlnIWqNkfEloGAJAmS9EVHKiB1mScPA8I2zeOegFLq6i6OyycNtHpCf22IKX3Fp7T0KR3DmxunRfkAMxN9RXn5TfoHhWHYAeNlkV7uHgJ1Q=w1053-h790-s-no-gm?authuser=0",
+								alt : "_blank",
+								type : "picture"
+							},
+							{
+								picture_url : "",
+								alt : "_blank",
+								type : ""
+							},
+							
+							{
+								video_url : "https://photos.google.com/share/AF1QipNHWa5FK5hJPs37_a_DBKXXNlK8uZ8MMJtttydor7mRj-Im5v3sf4e_lgDtM9VdqQ/photo/AF1QipP16YSJX4-pkzYQrMLjcG6ZRheS_RTraM-ircjZ?key=OFdCbEVOMlpOMHNnX0RRTWF2QVVyOWVkTHBSbWxn",
+								alt : "_blank",
+								type : "video"
+							},
+							//{}
+						
+					];
+					
+					function generate_media(gellarys, startIndex, endIndex) {
+						let cards_media = '';
+						console.log("List length:",gellarys.length);
+						for (let i = startIndex; i < endIndex; i++) {
+							const gellary = gellarys[i];
+							if( "picture" == gellary.type )
+							{
+								console.log("This media type:",gellary.type);
+								cards_media += `
+									<div class=" bg-base-100 p-3  w-full h-full shadow-xl rounded-lg shadow-lg ">
+										<div>
+											<img alt="${gellary.alt}" class="mx-auto mb-4 rounded-lg w-full object-cover" src="${gellary.picture_url}" />
+										</div>
+									
+									</div>
+								`;
+							}
+							else if( "video" == gellary.type ){
+								console.log("This media type:",gellary.type);
+								cards_media += `
+									<div class=" bg-base-100 p-3  w-full h-full shadow-xl rounded-lg shadow-lg ">
+										<div>
+											<video alt="${gellary.alt}" class="mx-auto mb-4 rounded-lg w-full object-cover" />
+												<source src="${gellary.video_url}" type="video/mp4">
+											</video>
+										</div>
+									
+									</div>
+								`;
+							}
+							else{
+								console.log("This media type:",gellary.type);
+								console.log("I guess you miss media type define.plese check....");
+								console.log("please chect list data part");
+							}
+							
+						}
+						return cards_media;
+					}
+					contentDiv.innerHTML = `
+						
+						<h2 class="text-6xl text-center font-bold text-pink-600">Gallery</h2>
+						
+						<div class="bg-gray-200 "> 
+						<br><br>
+							<div class=" w-full grid grid-cols-4 md:grid-cols-1 lg:grid-cols-3 gap-8 px-5">
+								${generate_media(gellarys, 0, gellarys.length)}
+							</div>
+							<br><br>
+						</div>
+					`;
+				}
+				
+				
+				else if(page === "contact")
+				{
+					
+					contentDiv.innerHTML = `
+						<p class="text-3xl text-center text-green-500">contact</p>
+						
+					`;
+				}
+				
+				
+				else if(page === "courses")
+				{
+					contentDiv.innerHTML = `
+						<h2 class="text-3xl p-5 text-center font-bold text-blue-500">COURSES</h2>
+						<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 m-2 p-2 bg-red-100">
+							<div class="hedlineteg mx-0 ps-2 pe-0">
+								<h2 class="text-start ms-0 text-4xl font-bold p-5 text-gray-700">
+									<span>Ph.D. in Computer Science</span>
+								</h2>
+							</div>
+							<div class="d-flex flex-row ms-2 ps-2 crs-detail text-black">
+								<div class="row col-md-12 d-flex align-items-left ms-4">
+									<div class="card-body m-0 p-0 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-3 col-sm-4 col-xs-4 reclabel">
+												<pre class="text-2xl"> <span style="font-weight: bold; font-size:26px;">Degree Offered:</span>	Ph.D</pre>
+											</div>
+										</div>
+										
+										<div class="line-through"></div>
+										
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-3 col-sm-3 col-xs-3  reclabel">
+												<pre class="text-2xl"> <span style="font-weight: bold; font-size:26px;">Duration:</span>			5 years</pre>
+											</div>
+										</div>
+										
+										<div class="linep"></div>
+										
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-3 col-sm-4 col-xs-4  reclabel">
+												<pre class="text-2xl"> <span style="font-weight: bold; font-size:26px;">Admission Time:</span>	July-August</pre>
+											</div>
+										</div>
+										
+										<div class="linep"></div>
+								
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-3 col-sm-3 col-xs-3 reclabel">
+												<p class="text-3xl"> 
+													<span style="font-weight: bold; font-size:26px;">
+														Eligibility:
+													</span>	
+													<br>
+													As per the current regulations, Course Work programme is pre-requisite to both Ph.D and M.Phil programmes and it will be offered as one semester regular programme of 12 credits. All in-service applicants (including those intending to prosecute Ph.D as part-time scholar) shall have to apply through proper channel.  Candidates who wish to avail state-funded fellowships are also to go through this process.
+													<br><br>
+													<p class="px-8 text-3xl">
+															(1) Candidates holding the Masterâ€™s Degree of The University of Burdwan or a professional degree considered to be equivalent to the Masterâ€™s Degree of The University of Burdwan in the subject concerned or allied/relevant subject, with at least 55% marks in aggregate or its equivalent grade â€˜Bâ€™ in the UGC-7 point scale (or an equivalent grade in a point scale wherever grading system is followed) or an equivalent degree from a foreign educational institution accredited by an Assessment and Accreditation Agency which is approved, recognized or authorised by an authority, established or incorporated under a law in its home country or any other statutory authority in that country for the purpose of assessing, accrediting or assuring quality and standards of educational institutions, may apply to the concerned Secretary of the Faculty Council for Postgraduate Studies concerned in the prescribed form for admission to the Ph.D. Programme in any of the subjects in which the Doctoral Degree may have been instituted.
+														<br><br>
+															(2) A relaxation of 5% of marks, from 55% to 50% or equivalent relaxation of grade may be allowed for those belonging to SC/ST/OBC-A/OBC-B/Differently Abled and other categories of candidates as per the decision of the UGC from time to time or for those who had obtained their Masterâ€™s degree prior to 19th September 1991.  
+														<br><br>
+															(3) The eligibility marks of 55% (or an equivalent grade in a point scale wherever grading system is followed) and the relaxation of 5% to the categories mentioned above are permissible based only on the qualification marks without including the grace mark procedures.
+														<br><br>
+															(4) Subject to fulfillment of the conditions stipulated in clause (1) or (2), and (3) above-
+																<br>
+																<p class="px-20 text-3xl">
+																		(i) candidates who have cleared the full-time regular M. Phil. course work with at least 55% marks in aggregate or its equivalent grade â€˜Bâ€™ in the UGC 7- point scale (or an equivalent grade in a point scale wherever
+																		<br><br>
+																			grading system is followed) and successfully completing the M. Phil. degree shall be eligible to proceed to do research work leading to Ph.D. degree in an integrated doctoral programme. A relaxation of 5% marks from
+																			55% to 50% or an equivalent relaxation of grade may be allowed for those belonging to SC/ST/OBC-A/OBCB/differently abled and other categories of candidates as per the decision of the UGC from time to time.
+																		<br><br>
+																		(ii) a candidate whose M. Phil. dissertation has been evaluated and the viva voce is pending may be admitted to the Ph.D. Programme.
+																		<br><br>
+																		(iii) candidates possessing a degree, considered equivalent to the M. Phil. degree of The University of Burdwan, from a foreign educational institution accredited by an Assessment and Accreditation Agency which is approved, recognized or authorised by an authority, established or incorporated under a law in its home country or any other statutory authority in that country for the purpose of assessing, accrediting or assuring quality and standards of educational institutions, shall be eligible for admission to Ph.D. programme.
+																</p>
+													</p>
+												</p>
+											</div>
+										</div>
+										
+										<div class="linep"></div>
+										
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 m-2 p-2 bg-green-100">
+							<div class="hedlineteg mx-0 ps-2 pe-0">
+								<h2 class="text-start m-5 px-2 text-black font-bold text-4xl text-underline">
+									<span>M.Sc. in Computer Science</span>
+								</h2>
+							</div>
+							
+							<div class="d-flex flex-row ms-2 ps-2 crs-detail">
+								<div class="row col-md-12 d-flex align-items-left ms-4">
+									<div class="card-body m-0 p-0 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-3 col-sm-4 col-xs-4 reclabel">
+												<pre class="text-2xl"> <span style="font-weight: bold; font-size:26px;">Degree Offered:</span>	M.Sc.</pre>
+											</div>
+										</div>
+										
+										<div class="line-through"></div>
+										
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-3 col-sm-3 col-xs-3  reclabel">
+												<pre class="text-2xl"> <span style="font-weight: bold; font-size:26px;">Duration:</span>			2 years</pre>
+											</div>
+										</div>
+										
+										<div class="linep"></div>
+										
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-3 col-sm-4 col-xs-4  reclabel">
+												<pre class="text-2xl"> <span style="font-weight: bold; font-size:26px;">Admission Time:</span>	July-August</pre>
+											</div>
+										</div>
+										
+										<div class="linep"></div>
+										
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-3  col-xs-3  reclabel">
+												<p class="text-2xl text-gray-700">
+													<span style="font-weight: bold; font-size:26px;">
+														Eligibility:
+													</span>		
+													Honours graduates under (10+2+3) system with Mathematics as one of the combination subjects 
+													and having at least 50% marks in the Honours subject and 
+													also  B.C.A. / B.Sc.(Computer Science) / B.Sc.(IT) / B.Sc.(E-Commerce) / B.E. / B.Tech. 
+													candidates with 60% marks are eligible to apply.
+													Admission based on performance in the Joint Entrance Examination conducted by West Bengal Joint Entrance Board.
+												</p>
+											</div>
+										</div>
+										
+										<div class="linep"></div>
+										
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-4 col-sm-4 col-xs-4 reclabel">
+												<pre class="text-2xl"> <span style="font-weight: bold; font-size:26px;">Approved By:</span>		A.I.C.T.E.</pre>
+											</div>
+										</div>
+										
+										<div class="linep"></div>
+										
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-4 col-sm-4 col-xs-4 text-2xl font-bold reclabel">
+												<pre class="text-2xl"> <span style="font-weight: bold; font-size:26px;">Mandatory Disclosure:</span><a class="download text-blue-500" href="../Downloads/Disclosures/MCA_AICTE.pdf" target="page">Click here to download the disclosure.</a>
+												</pre>
+											</div>
+										</div>
+										
+										<div class="linep"></div>
+										
+										<div class="d-flex flex-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="col-md-11 rectext">
+												<div class="card w-100 m-2">
+													<h5 class="card-header text-2xl font-bold text-yellow-700">
+														Syllabus
+													</h5>
+													<div class="card-body text-blue-700">
+														<p class="card-text"></p>
+														<p>
+															<i class="fas fa-book-open"></i>
+															<a class="syllabus_link" href="../Downloads/Syllabus/Syllabus_MCA_2024-2025.pdf" target="_blank" rel="noopener noreferrer"> 
+																M.Sc. in Computer Science &amp; Application: 2024-2025 (under CBCS)
+															</a>
+														</p>
+														<p>
+															<i class="fas fa-book-open"></i>
+															<a class="syllabus_link" href="../Downloads/Syllabus/Syllabus_MCA_2021-2022.pdf" target="_blank" rel="noopener noreferrer"> 
+																M.Sc. in Computer Science &amp; Application: 2021-2022 (under CBCS)
+															</a>
+														</p>
+														<p></p>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="linep"></div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					`;
+				}
+				
+				else if(page === "syllabus")
+				{
+					const syllabus_list =[
+					//############################################ M.Sc Syllabus ###################################
+						/* 0 */	{downloadLink: "https://www.buruniv.ac.in/Downloads/Syllabus/Syllabus_MSCS_2020-2021.pdf", target: "M.Sc Syllabus 2020-2021", link_text :"M.Sc. in Computer Science (2020-2021)"},
+								{downloadLink: "https://www.buruniv.ac.in/Downloads/Syllabus/Syllabus_MSCS_2024-2025.pdf", target: "M.Sc Syllabus 2024-2025", link_text :"M.Sc in computer Science Syllabus (2024-2025)"},
+					//+++++++++++++++++++++++++++++++++++++++++++ B.Sc Syllabus +++++++++++++++++++++++++++++++++++++++++++++++++
+						/* 2 */	{downloadLink: "https://www.buruniv.ac.in/Downloads/Syllabus/Syllabus_BSCCOMPSC_NEP2023-2024.pdf", target: "B.Sc.(Honours) in Computer Science (NEP)", link_text :"B.Sc.(Honours) in Computer Science (NEP)"},
+								{downloadLink: "https://www.buruniv.ac.in/Downloads/Syllabus/Syllabus_VAC_NEP2023-2024.pdf", target: "VAC Semester I", link_text:"VAC Semester I"},
+								{downloadLink: "https://www.buruniv.ac.in/Downloads/Syllabus/Syllabus_VAC_NEP_SEMII_2023-2024.pdf", target: "VAC Semester II", link_text:"VAC Semester II"},
+								{downloadLink: "https://www.buruniv.ac.in/Downloads/Syllabus/Syllabus_VOC_MINOR_NEP2023-2024.pdf", target: "VOC Minor(Sem-III, V &amp; VI)", link_text:"VOC Minor(Sem-III, V &amp; VI)"},
+								{downloadLink: "https://www.buruniv.ac.in/Downloads/Syllabus/Syllabus_VOC_EXITPOINT_NEP2023-2024.pdf", target: "VOC Exit Point (Sem-II, Sem-IV)", link_text:"VOC Exit Point (Sem-II, Sem-IV)"},
+						/* 7 */	{downloadLink: "https://www.buruniv.ac.in/Downloads/Syllabus/Syllabus_BSCCOMPSC_2017-2018.pdf", target: "B.Sc.(Honours) in Computer Science (2017-2018)", link_text:"B.Sc.(Honours) in Computer Science (2017-2018)"}
+					];
+					
+					function syllabus_genarate(syllabus_list, startIndex, endIndex)
+					{
+						let syllabus_link = '';
+						for (let i = startIndex; i <= endIndex; i++)
+						{
+							const syllabus = syllabus_list[i];
+							syllabus_link += `
+								<div class="text-left p-2 text-2xl text-blue-700 text-ul">
+									<a href="${syllabus.downloadLink}" target="${syllabus.target}">${syllabus.link_text}</a>
+								</div>
+							`;
+						}
+						return syllabus_link;
+					}
+					
+					contentDiv.innerHTML = `
+						<h2 class="text-6xl text-center font-bold text-cyan-600">Syllabus</h2>
+						<br>
+						<div class="bg-red-200"> <!-- M.sc syllabus download -->
+							<br>
+							<h2 class="text-black text-4xl p-2 font-bold"> 
+								Download syllabus  M.Sc. in Computer Science: <br>-----------------------------------------------------------
+							</h2>
+								<p>${syllabus_genarate(syllabus_list, 0,1)}</p>
+							<br>
+						</div>
+						<br><br>
+						
+						<div class="bg-green-200"> <!-- B.sc syllabus download -->
+							<br>
+							<h2 class="text-black text-4xl p-2 font-bold"> 
+								Download syllabus  B.Sc. in Computer Science: <br>-----------------------------------------------------------
+							</h2>
+								<p>${syllabus_genarate(syllabus_list, 2, 7)}</p>
+							<br><br>
+						</div>
+						
+					`;
+					
+				}
+				
+				else if(page === "notebook")
+				{
+					
+					const commonCourses = {
+						MSCS101: { courseId: "MSCS-101", courseName: "Advanced Algorithm Design" },
+						MSCS102: { courseId: "MSCS-102", courseName: "Advanced Computer Architecture" },
+						MSCS103: { courseId: "MSCS-103", courseName: "Advanced Software Engineering" },
+						MSCS104: { courseId: "MSCS-104", courseName: "Numerical & Statistical Computing" },
+						
+						MSCS201: { courseId: "MSCS-201", courseName: " Advanced Operating Systems" },
+						MSCS202: { courseId: "MSCS-202", courseName: "Advanced Computer Network" },
+						MSCS203: { courseId: "MSCS-203", courseName: "AI & Applications" },
+						MSCS204: { courseId: "MSCS-204", courseName: "Advanced DBMS" }
+					};
+					
+					const courses = [ // index:: start=0 end=n-1
+						//=============================  SEM->1  =======================================
+							{ //0
+								...commonCourses.MSCS101, 
+								partNo: "1", taughtBy: "ACM", 
+								downloadLink: "https://drive.google.com/drive/folders/13wDqOW_0wJcDsWGVnECi9OJpm5ADQa4N?usp=sharing", target: "DSA_ACM", 
+								hoverColor: "hover:bg-cyan-300"
+							},
+					/* 1 */	{ ...commonCourses.MSCS101, partNo: "2", taughtBy: "PR", downloadLink: "https://drive.google.com/drive/folders/1xkBqUQabrBfDugZm2cM5hVwXOwXiH1Eh?usp=sharing", target: "DSA_PR", hoverColor: "hover:bg-red-500" },
+							{ ...commonCourses.MSCS102, partNo: "1", taughtBy: "RK", downloadLink: "https://drive.google.com/drive/folders/1sn4ceiKbsK-9Zgbu0voTR79Isp-GOgOU?usp=sharing", target: "Architecture_RK", hoverColor: "hover:bg-pink-300", /*image: "https://storage.googleapis.com/a1aa/image/nkxvyLmU2laoNhYtUZrHzLNkUCIjTf1RK9CcOtQJoMSt6p4JA.jpg"*/ },
+							{ ...commonCourses.MSCS102, partNo: "2", taughtBy: "SK", downloadLink: "https://drive.google.com/drive/folders/1imtIriy6LqI2WpcPf-matym-G-pNeMaM?usp=sharing", target: "Architecture_SK", hoverColor: "hover:bg-cyan-300", /*image: "https://storage.googleapis.com/a1aa/image/nkxvyLmU2laoNhYtUZrHzLNkUCIjTf1RK9CcOtQJoMSt6p4JA.jpg" */ },
+							{ ...commonCourses.MSCS103, partNo: "1", taughtBy: "ACM", downloadLink: "https://drive.google.com/drive/folders/1jVAm9cm3QzYXKEitLWI9SbtbvCGN2QiV?usp=sharing", target: "SE_ACM", hoverColor: "hover:bg-yellow-300" },
+							{ ...commonCourses.MSCS103, partNo: "2", taughtBy: "AP", downloadLink: "", target: "", hoverColor: "hover:bg-red-300" },
+							{ ...commonCourses.MSCS104, partNo: "1 (Numerical Computing)", taughtBy: "ACM", downloadLink: "https://drive.google.com/drive/folders/1dd_tPuHxyFuADvRbslzqh7unxbPS5PYt?usp=sharing", target: "numeric_ACM", hoverColor: "hover:bg-cyan-300" },
+					/* 7 */	{ ...commonCourses.MSCS104, partNo: "1 (Statistical Computing)", taughtBy: "JC & Sonali", downloadLink: "https://drive.google.com/drive/folders/1MOfOMi8C5F5sweC9cRQ9-baE10-ng1ws?usp=sharing", target: "SATI_JC_Sonali", hoverColor: "hover:bg-green-300" },
+						//################################# Semester – II  #####################################
+						
+					/* 8 */ { ...commonCourses.MSCS201, partNo: "1", taughtBy: "R.K", downloadLink: "https://drive.google.com/drive/folders/1Xrm3IME29nrWgwwVNICA0XcX-xi7721G?usp=sharing", target: "OS_RK", hoverColor: "hover:bg-blue-500" },	
+							{ ...commonCourses.MSCS201, partNo: "2", taughtBy: "P.R", downloadLink: "https://drive.google.com/drive/folders/1eJs-HcKAt1exCk6XB4cyzKqCq5xwMlC6?usp=sharing", target: "OS_PR", hoverColor: "hover:bg-blue-400" },
+							{ ...commonCourses.MSCS202, partNo: "1", taughtBy: "S.K", downloadLink: "https://drive.google.com/drive/folders/1Duu7tCA9KPc8jrJMk9SzWxyQzT1QtKdm?usp=sharing", target: "Network_SK", hoverColor: "hover:bg-yellow-500" },
+							{ ...commonCourses.MSCS202, partNo: "2", taughtBy: "A.P", downloadLink: "https://drive.google.com/drive/folders/1Pq2lOKYKwhYfYsq7JJ74O4Bh-EuSgCnr?usp=sharing", target: "Network_AP", hoverColor: "hover:bg-yellow-400" },
+					/* 12 */{ ...commonCourses.MSCS203, partNo: "1", taughtBy: "A.C.M", downloadLink: "https://drive.google.com/drive/folders/1QvnfhoZj5iRbwNZ3zMW1uYFuRpy5Yswq?usp=sharing", target: "AI_ACM", hoverColor: "hover:bg-cyan-400" },
+							{ ...commonCourses.MSCS203, partNo: "2", taughtBy: "J.C", downloadLink: "https://drive.google.com/drive/folders/1kbuoTrNyUjGHKqcZOsm3EdFlkenOADlW?usp=sharing", target: "AI_JC", hoverColor: "hover:bg-cyan-500" },
+					/* 14 */{ ...commonCourses.MSCS204, partNo: "1", taughtBy: "A.C.M", downloadLink: "https://drive.google.com/drive/folders/1I7vSZrXAjQD0xNag-DhWTmH3hjBrbhQV?usp=sharing", target: "DBMS_ACM", hoverColor: "hover:bg-green-500" },
+					/* 15 */{ ...commonCourses.MSCS204, partNo: "2", taughtBy: "S.K/....", downloadLink: "https://drive.google.com/drive/folders/1_vdRWXR-GqQ5tZGyf2q6DXAwwdJgFTwX?usp=sharing", target: "DBMS_SK", hoverColor: "hover:bg-green-400" }
+
+						//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Semester – III $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+						//~~~~~~~~~~~~~~~~~~~++++++++++++++ Semester – IV  ++++++++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+						
+					];
+					
+					
+				   // Function to generate course cards
+					function generateCourseCards(courses, startIndex, endIndex) {
+						let cards = '';
+						for (let i = startIndex; i <= endIndex; i++) {
+							const course = courses[i];
+							cards += `
+								<div class="card  p-5 w-96 shadow-xl rounded-lg shadow-lg text-center ${course.hoverColor}">
+									${course.image ? `
+										<figure height="100">
+											<img alt="A birthday card with a gift box and ribbon" class="mx-auto mb-4 rounded-lg w-full object-cover" src="${course.image}" />
+										</figure>
+									` : ''}
+									<div class="text-center font-bold">
+										<p class="text-lg text-gray-700">
+											Course ID: ${course.courseId} <br>
+											Course Name: ${course.courseName} <br>
+											Part No: ${course.partNo} <br>
+											Teaching by: ${course.taughtBy}
+										</p>
+										<button class="btn btn-active btn-warning">
+											<a href="${course.downloadLink}" target="${course.target}">Download</a>
+										</button>
+									</div>
+								</div>
+							`;
+						}
+						return cards;
+					}
+					
+					<!--HTML SEM AWAYSE SHOW PART-->
+					contentDiv.innerHTML = `
+						<h2 class="text-6xl text-center font-bold text-green-600">NoteBook</h2>
+						
+						<div class="bg-gray-200 "> <!-- ***Semester – I *** -->
+							<h3 class="text-5xl font-bold text-red-800 p-4">SEMESTER – I</h3>
+							<div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-3 px-10">
+								${generateCourseCards(courses, 0, 7)}
+							</div>
+							<br><br>
+						</div>
+						<br><br>
+						<div class="bg-pink-200"> <!-- ***Semester – II *** -->
+							<h3 class="text-5xl font-bold text-blue-800 p-4">SEMESTER – II</h3>
+							<div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-3 px-10">
+								${generateCourseCards(courses, 8, 15)}
+							</div>
+							<br><br>
+						</div>
+						<br><br>
+						<div class="bg-cyan-200">  <!-- ***Semester – III *** -->
+							<h3 class="text-5xl font-bold text-black p-4">SEMESTER – III</h3>
+							<div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-3 px-10">
+								${generateCourseCards(courses, )}
+								<br><br>
+							</div>
+						</div>
+						<br><br>
+						<div class="bg-green-200"> <!-- ***Semester – IV *** -->
+							<h3 class="text-5xl font-bold text-yellow-500 p-4">SEMESTER – IV</h3>
+							<div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-3 px-10">
+								${generateCourseCards(courses, )}
+								<br><br>
+							</div>
+						</div>
+					`;
+				}
+				
+				else if(page === "pre_yea_ques")
+				{
+					contentDiv.innerHTML = `
+						<h2 class="text-6xl text-center  text-pink-600 font-bold">Previous years Question Paper</h2>
+						<div class="bg-green-200">
+							<br>
+							<h3  class="text-4xl font-bold text-blue-800 p-5">SEMESTER – I</h3>
+							<button class="btn btn-active btn-warning px-10">
+								<a  class="text-1xl text-black"
+									href="https://drive.google.com/drive/folders/1BoHIMdQZAjB2gXXVqkvSEOBMzUfWeP6s?usp=sharing" 
+									target="old_question">
+									<u>Download previous year Question paper</u>
+								</a>
+							</button>
+							<br><br>
+						</div>
+						<br><br>
+						<div class="bg-blue-600 Px-10 ">
+							<br>
+							<h3  class="text-4xl font-bold p-5 text-white ">SEMESTER – II</h3>
+							<button class="btn btn-active btn-warning px-10">
+								<a  class="text-1xl text-black"
+									href="https://drive.google.com/drive/folders/1Spixbwzr4Mu91oyquNsdbu_bsfvurFJc?usp=sharing" 
+									target="old_question">
+									<u>Download previous year Question paper</u>
+								</a>
+							</button>	
+							<br><br>
+						</div>
+						<br><br>
+						<div class="bg-black">
+							<br>
+							<h3  class="text-4xl font-bold p-5 text-yellow-600">SEMESTER – III</h3>
+							<button class="btn btn-active btn-warning px-10">
+								<a  class="text-1xl text-black"
+									href="https://drive.google.com/drive/folders/1A3MaTcu5cEJhpU_apsBU4zPLnWs9gJcY?usp=sharing" 
+									target="old_question">
+									<u>Download previous year Question paper</u>
+								</a>
+							</button>	
+							<br><br>
+						</div>
+						<br><br>
+						<div class="bg-black">
+							<br>
+							<h3  class="text-4xl font-bold p-5 text-yellow-600">SEMESTER – IV</h3>
+							<button class="btn btn-active btn-warning px-10">
+								<a  class="text-1xl text-black"
+									href="https://drive.google.com/drive/folders/1IYn72N33pWWShNPln_SEZpml-ROkX9aj?usp=sharing" 
+									target="old_question">
+									<u>Download previous year Question paper</u>
+								</a>
+							</button>	
+							<br><br>
+						</div>
+						
+					`;
+				}
+				
+				
+				else if(page === "map")
+				{
+					contentDiv.innerHTML = `
+						<h2 class="text-4xl text-center font-bold text-cyan-400 p-3">~~Address~~</h2>
+						<div class="container mx-auto py-4 bg-white">
+							<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  PY-2">
+								<!-- Column 1x1 -->
+								<div class="space-y-4">
+									<h3 class="text-xl font-bold border-b-2 border-gray-600 pb-2 tex-gray-700">
+										Academic Campus, Golapbag,<br>Bardhaman - 713 104, West Bengal, India
+									</h3>
+									<iframe 
+										class="w-full h-60 rounded-lg border-10"
+										src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3665.704682517685!2d87.84365547405679!3d23.253831179012316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8361975c28d9f%3A0x5f2a148d367d62c8!2sUniversity%20Of%20Burdwan%2C%20Golapbag%20Campus!5e0!3m2!1sen!2sin!4v1742969857501!5m2!1sen!2sin"
+			
+										allowfullscreen="" 
+										loading="lazy">
+									</iframe>
+								</div>
+
+								<!-- Column 1x2 -->
+								<div class="space-y-4">
+									<h3 class="text-xl font-bold border-b-2 border-gray-600 pb-2 tex-gray-700">
+										Rajbati,<br> Bardhaman - 713 104, West Bengal, India
+									</h3>
+									<iframe 
+										class="w-full h-60 rounded-lg border-10"
+										src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.0892942873593!2d87.8487422740562!3d23.239837479022082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f83626f531375b%3A0xa0c3dbc57c3a3b09!2sBurdwan%20University%20Office%20Rajbati!5e0!3m2!1sen!2sin!4v1742970103531!5m2!1sen!2sin" 
+										allowfullscreen="" 
+										loading="lazy">
+									</iframe>
+								</div>
+
+								<!-- Column 1x3: Google Map -->
+								<div class="space-y-4">
+									<h3 class="text-xl font-bold border-b-2 border-gray-600 pb-2 tex-gray-700">
+										Golden Jubilee Building,<br>Bardhaman - 713 104, West Bengal, India
+									</h3>
+									<iframe 
+										class="w-full h-60 rounded-lg border-10"
+										src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3665.908203266105!2d87.85098587405645!3d23.246427279017542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f836205caa0361%3A0x87dff1103b81e051!2sThe%20University%20of%20Burdwan%2C%20Golden%20Jubilee%20Building(Administrative%20Building)!5e0!3m2!1sen!2sin!4v1742970185678!5m2!1sen!2sin" 
+										allowfullscreen="" 
+										loading="lazy">
+									</iframe>
+								</div>
+								<!-- Column 2x1: Google Map -->
+								<div class="space-y-4">
+									<h3 class="text-xl font-bold border-b-2 border-gray-600 pb-2 tex-gray-700">Department of Computer Science(floor-G)<br>Department of Environment(floor-1)<br>Department of Biotechnology(floor-2)<br>Bardhaman - 713 104, West Bengal, India</h3>
+									<iframe 
+										class="w-full h-60 rounded-lg border-10"
+										src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3461.9595242404666!2d87.84397358318078!3d23.25399339759018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8361b85e32df1%3A0x82ab2a5ee41569e!2z4KaV4Kau4KeN4Kaq4Ka_4KaJ4Kaf4Ka-4KawIOCmrOCmv-CmnOCnjeCmnuCmvuCmqCDgpqzgpr_gpq3gpr7gppc!5e0!3m2!1sbn!2sin!4v1742843117349!5m2!1sbn!2sin" 
+										allowfullscreen="" 
+										loading="lazy">
+									</iframe>
+								</div>
+								<!-- Column 2x2: Google Map -->
+								<div class="space-y-4">
+									<h3 class="text-xl font-bold border-b-2 border-gray-600 pb-2 tex-gray-700"><br><br>Burdwan University, Correspondence Building<br>Bardhaman - 713 104, West Bengal, India</h3>
+									<iframe 
+										class="w-full h-60 rounded-lg border-10"
+										src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d616.0132358817143!2d87.8488582393763!3d23.256184672893763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8361b8db2ec77%3A0x172d14c1604d1124!2z4Kas4Kaw4KeN4Kan4Kau4Ka-4KaoIOCmrOCmv-CmtuCnjeCmrOCmrOCmv-CmpuCnjeCmr-CmvuCmsuCmr-CmvCwg4Kaa4Ka_4Kag4Ka_4Kaq4Kak4KeN4Kaw4KeH4KawIOCmrOCmv-CmsuCnjeCmoeCmv-Cmgg!5e0!3m2!1sbn!2sin!4v1743006600737!5m2!1sbn!2sin" 
+										allowfullscreen="" 
+										loading="lazy">
+									</iframe>
+								</div>
+							</div>
+							<br>
+						</div>
+					`;
+				}
+				
+			}	
+		</script>
+		
+		<footer class="bg-pink-500 text-white  mt-6 ">
+			<div class="container mx-auto ">
+				<div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 py-4">
+					<!-- Column 1 -->
+					<div class="space-y-4">
+						<h3 class="text-3xl text-center font-bold border-b-2 border-gray-600 pb-2">The University of Burdwan</h3>
+						<img class="max-auto rounded-full w-20 h-20 " src="https://www.buruniv.ac.in/Demo/Images/bu_logo90.png" width="90" height="70">
+						<ul class="space-y-2">
+							<li class='fas fa-map-marker-alt' style='font-size:26px;color:green'>
+								<a onclick="loadPage('map')" class=" text-black" href="#" >
+									How to reach The University of Burdwan
+								</a>
+							</li>
+							<li class='fas fa-envelope-open' style='font-size:26px;color:blue'>
+								<a href="#" class=" text-black">
+									 contact@example.com
+								</a>
+							</li>
+							<li class="fas fa-phone mr-3 " style="font-size:26px;color:blue">
+								<a class=" px-2 text-black" href="tel:91-94744 71352">
+									+91-94744 71352
+								</a>
+							</li>
+						</ul>
+						<ul class="flex mt-4">
+							<!--facebook-->
+							<a class="hover:underline px-1" href="https://www.facebook.com/profile.php?id=61553355846446" target="facebook">
+								<i class="fab fa-facebook-f" style="font-size:30px;color:blue"></i>
+						   </a>
+						   <!--x-handel-->
+							<a class="hover:underline text-black font-bold px-2" href="#" target = "<!--x-handel-->"> 
+								<i class="fab fa-twitter" style="font-size:35px;color:blue"></i>
+							</a>
+							<!-- linkedin-->
+							<a href="https://www.linkedin.com/in/the-university-of-burdwan-official-935312299/" class="hover:underline text-black font-bold px-2" target="linkedin">
+								<img width="48" height="48" src="https://img.icons8.com/fluency/48/linkedin.png" alt="linkedin"/>
+							</a>
+						</ul>
+					</div>
+
+					<!-- Column 2 -->
+					<div class="space-y-4">
+						<h3 class="text-3xl font-bold border-b-2 border-gray-600 pb-2">Quick Links</h3>
+						<ul class="space-y-2">
+							<li>
+								<a onclick="loadPage('gellary')" class=" text-black text-2xl" href="Signup.html" target="home">
+									Gellary
+								</a>
+							</li>
+							<li class=" text-black text-2xl"><a href="https://www.buruniv.ac.in/Demo/Template.php?menu=Information&submenu=Holidays" target='_blank' rel='noopener noreferrer'>Holiday List</a></li>
+							<li class=" text-black text-2xl"><a href="https://www.buruniv.ac.in/Demo/Template.php?menu=Facilities&submenu=CL" target='_blank' rel='noopener noreferrer'>Central Library</a></li>
+							<li class=" text-black text-2xl"><a href="http://uit.buruniv.ac.in/" target='_blank' rel='noopener noreferrer'>University Institute Of Technology(UIT)</a></li>
+							<li class=" text-black text-2xl"><a href="http://dde.buruniv.ac.in/" target='_blank' rel='noopener noreferrer'>Centre for Distance And Online Education(CDOE)</a></li>
+						</ul>
+					</div>
+
+					<!-- Column 3 -->
+					<div class="space-y-4">
+						<h3 class="text-3xl font-bold border-b-2 border-gray-600 pb-2 text-3xl">Other Link</h3>
+						<ul class="space-y-2 ">
+							<li class="text-black text-2xl"><a href="http://www.ugc.ac.in" target='_blank' rel='noopener noreferrer'>UGC</a></li>
+							<li class="text-black text-2xl"><a href="https://www.abc.gov.in/" target='_blank' rel='noopener noreferrer'>ABC ID</a></li>
+							<li class="text-black text-2xl"><a href="https://nptel.ac.in/" target='_blank' rel='noopener noreferrer'>NPTEL</a></li>
+							<li class="text-black text-2xl"><a href="https://swayam.gov.in/" target='_blank' rel='noopener noreferrer'>SWAYAM</a></li>
+							<li class="text-black text-2xl"><a href="https://www.aicte-india.org/"  target='_blank' rel='noopener noreferrer'>AICTE</a></li>
+							<li class="text-black text-2xl"><a href="https://epgp.inflibnet.ac.in/" target='_blank' rel='noopener noreferrer'>E-PG Pathshala</a></li>
+							<li class="text-black text-2xl"><a href="https://shodhganga.inflibnet.ac.in/" target='_blank' rel='noopener noreferrer'>Shodhganga</a></li>
+							<li class="text-black text-2xl"><a href="https://vidwan.inflibnet.ac.in/" target='_blank' rel='noopener noreferrer'>Vidwan</a></li>
+							<li class="text-black text-2xl"><a href="https://fossee.in/" target='_blank' rel='noopener noreferrer'>FOSSEE</a></li>
+						</ul>
+					</div>
+				</div>
+				<br>
+			</div>
+		</footer>
+		
+		<footer class="bg-pink-800 text-white p-4">
+			<p class="text-center">&copy; 2025 Burdwan University. All rights reserved.</p>
+				<div class="flex justify-center space-x-4 mt-4 px-3">
+					<a class="hover:underline " href="https://m.facebook.com/swadesh.nandi.56/" target="facebook">
+						<i class="fab fa-facebook-f" style='font-size:26px;color:blue'>
+						</i>
+				   </a>
+				   
+					<a class="hover:underline text-black font-bold" href="https://www.instagram.com/swadesh.nandi/" target = "instagram"> 
+						<i class="fab fa-instagram" style='font-size:26px;color:yellow'></i>
+					</a>
+					<!-- linkedin-->
+					<a href="https://www.linkedin.com/in/swadesh-nandi-4992412b9/" class="hover:underline text-black font-bold px-2" target="linkedin">
+						<img width="48" height="48" src="https://img.icons8.com/fluency/48/linkedin.png" alt="linkedin"/>
+					</a>
+							
+					<!--<a class="hover:underline" href="tel:">
+						<p class="text-black  text-1xl font-bold text-blue-500"><i class="fas fa-phone mr-3 text-black" style='font-size:26px;color:blue'></i>9749056152</p>
+					</a> -->
+				</div>
+				
+				<div class="flex justify-center  px-14">
+					<img alt="logo" class="max-auto rounded-full w-20 h-20 items-center" height="200" src="https://lh3.googleusercontent.com/pw/AP1GczOwNMpbXkLSCf63nR4jZyRVA6pDPmA2UN5oJzyqBf_P5GmRMc-Ed9WNVgoo6OGfn2ZErtN8zk2Zy0Q9LxAvdxjfzMbbnXS1abPMKSbLZWMux8CgtOme9ozyfSZw45z2WgZ3bVIGHEDedZQ_8gRwcgU=w640-h480-s-no-gm?authuser=0" width="80"/>
+				</div>
+				<div class="flex justify-center mt-2 px-3">
+					<p>Developed By : Swadesh Nandi</p>
+				</div>	
+				<div class="flex justify-center mt-2 px-3">
+					<P>Version :  3.2</P>
+				</div>
+		</footer>
+			
+	</body>
+
+	<script>
+		function updateDateTime() {
+			const now = new Date();
+			const options = { 
+				year: 'numeric', 
+				month: 'long', //long
+				day: 'numeric', 
+				hour: '2-digit', 
+				minute: '2-digit', 
+				second: '2-digit',
+				hour24:  true
+			};
+			document.getElementById('dateTime').innerText = now.toLocaleString('en-US', options);
+		}
+
+		// Update the date and time immediately
+		updateDateTime();
+
+		// Update the date and time every second
+		setInterval(updateDateTime, 1000);
+	</script>
+
+</html>
