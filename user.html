@@ -27,7 +27,8 @@
 				-webkit-user-select: none; /* Safari */
 				-moz-user-select: none;    /* Firefox */
 				-ms-user-select: none;     /* Internet Explorer/Edge */
-				user-select: none; 		
+				user-select: none; 	
+				display: none;
 			}
 			a:hover {
 				background-color: white;
@@ -51,18 +52,28 @@
 				color: #374151;
 				font-family: monospace;
 			}
+			img {
+				pointer-events: none;
+				user-select: none;
+			}
 			
 		</style>
 	</head>
 	
 	<script>
+		// If JavaScript is enabled, show the page
+		document.addEventListener("DOMContentLoaded", function () {
+		  document.body.style.display = "block";
+		});
+	</script>
+	<script type="text/javascript" async="async">
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
         document.addEventListener('keydown', function(e) {
             // Disable Ctrl+C and Ctrl+U
-            if ((e.ctrlKey && (e.key === 'c' || e.key === 'u'))||(e.Key ==='Prt sc')) {
+            if ((e.ctrlKey && (e.key === 'c' || e.key === 'u'))||(e.Key ==='Prt sc') || e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") ||(e.ctrlKey && e.key === "U")){
                 e.preventDefault();
             }
         });
@@ -83,7 +94,7 @@
 		});
     </script> 
 	
-	<body class="bg-white w-full">
+	<body class="bg-white w-full p-2">
 		<header class="bg-blue-500 text-white p-5">
 			<div class="container mx-auto flex justify-between items-center">
 				
@@ -167,7 +178,7 @@
 				{
 					contentDiv.innerHTML = `
 						<h4 class="text-4xl font-bold text-black text-center text-cyan-400">Welcome to the Home Page</h4>
-						<h3 class="text-6xl font-bold text-center text-red-600">***** the home section =>(V3.2.1) *****</h3>
+						<h3 class="text-6xl font-bold text-center text-red-600">***** the home section =>(V3.3.2) *****</h3>
 						<h2 class="text-3xl px-10 font-bold text-green-500">Click on 'NoteBook' option and download the ppt and pdf your need.</h2>
 					`;
 				} 
@@ -175,184 +186,63 @@
 				
 				// =======================================CREATE Gellary Function===========================================
 				else if(page === "gellary")
-				{
-					const gellarys =[
-					/* 1 */	{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczPp1Zlgwmnac_flBdYsudDzYC-31IciY7IIinq1y2AZWKDiR4brmFtjki9GIHTlfs5uA1QjPk8lz5eV7i4GgnKCkyQStmpjJHJxvTORzus4N4uhgyQcI4tAMVueNxUw1OU3phLMPJW1sUrHVk89R8YNZw=w1397-h786-s-no?authuser=0", 
-								alt : "_blank",
-								type : "picture"
-							},
-					/* 2 */	{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczMD7QeHX2wN7S3dYZPLDJ-4x9eESrLqUfe9v6nZzW55QxV1VyiJ2orycqL3TS3i9BWnVkvGIfnw1heXLeFts2YAnZcNx3KU8_cBi-sOYANrNgl49bxfb_FrqfeVxdpU5Y7v81_pm4jyHYMpjGLKm0nXxg=w1397-h786-s-no?authuser=0", 
-								alt : "_blank",
-								type : "picture"
-							},
-					/* 3 */	{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczNYPcAdlEUamj5ZEVCARKM7qRiVSdf60EwALWQIglhaNdMDIhAdV1uDDVTo5UJc8p9t4unTWKMJ7G97T9nYUQC1X4iLo1_rWuSsiLeGRh58aXfYAlI3YuqHOL1oR5TWQlfQbIPykeurp27DZztFOUj-cA=w1048-h786-s-no?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczM4DWOaNFTkyxMDmEfW92XQZVbTi_XdKmyezawR2vtLf-r3jGZvcx1k5GIX09vY6EMJGFTcLMaCxncYe7_qrBjrwVfhRZeli1To5qxjWHGG9iGc5zZj_dFbD2XHRcIRoNx4LKv9PQcAtGIm4Ipxo_wypA=w1048-h786-s-no?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-					/* 5 */	{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczMDLpmXwOJMrVO3zp8WdNSxfryuVIhBG88py9c_1eGw6prbV2gWG3jS6AwIv-4pVsn9S4qLTQjUWGbu7Kdk7Gmy9uxtSqAt5T72PEobCRg8ZG7e0CTSYUfafuXJ3ZADgpVRcpnd7fC_Pq6zmKueRIdwVQ=w1048-h786-s-no?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOvcjpUWP3mFqTGfQLB51O02H7doWmYqJwAB_MT8U4TJtim-3s9lMdKTQ_L7KRKsACpbtHnNGA-1tQ9zb4E-sINi4o6Go-dma85jYXFtB4_g6ziKBCHtZNKVzMy7_FoOaAUTHhCjrPR5OT0qyAJT2JHEA=w1397-h786-s-no?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-					/* 7 */	{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczM_7LdyURx27rmJsD9-CHoK33RFGgjTnSxBhdmggghxX1Hdipsi5VIGbEUKysoO8QfJ0d60n__4CNQqainvIpK2k1_BtQaviQKxK6_jhrVD3LbIep5tnwtx1F2iZd1yo30LozkoH3Aao-lVgZMJDY1vrw=w1048-h786-s-no?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-					/* 8 */	{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOcNiD3sLWkIhiFH5QZilzqb_CZzEk3eBCosY6-ZYnjeHU52iDuWxbwcCOgerI-_q-clU2jwUg8740oG8XgkzkcR1S1TWtif20Kv2VUu9aHQj8bHfFsXzTLmmjfUoYbjKx2s3MUg5A4PQpClIRhUULCVA=w1048-h786-s-no?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczMI3oYt13bsZA6BSpP3fEqoOJyBFuuJczVU34BPHf8jpR-zwcGJsbgi-OpJVeWPMwNN_GDFczA2N3DyiYUxEfh1yRsgcRCmgifPTagZXYBY4AYCAhdLW8Lpqo7a8fw6AcGof0HtFAgU0TOEYSsgs7NvAA=w1048-h786-s-no?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOZPmjp-lHxzwzMjWELCPppGyWMxReZ4rysyovkGICtre6IbggpEsgXzak4xp-xipg_88A5-J1BGy0J7stYpoScAkkrGqwmYfFwAGWkjLoDtajiNIJIKx4lmbZhpdq159fCfAi-_1WysyEi4Qo8nkeX8g=w1048-h786-s-no?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOEK6EXrwJkOaKIkaf7znUoZnQHbN4ifM1hzu2blgicDN8kVFzt3cvKwV9DkJK4Y5rmFLeb05rEqehPRWPDvYS1uzTHJNtcPhBsRIOqZYaOyy6zTQAU1E15GIWKtOi93tT57q2HMg42h9WDr9WSMUTRAQ=w1048-h786-s-no?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOZfG03hKBSr2LD4BzNf-ybVFbgLuAhs7SImoSrpzql1NpBoQqjZSg0wEsfKqtq7L_b_NgXOptqIxZdcgWgKMAUWiunXBXqcpJ3wsiCPYhkb3n8culjb8EHYqiwDPSk991Ee5oEc4PBgpkzFy46L6niVg=w1042-h790-s-no-gm?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczNHHHb-EGvAKRCIgmNXd-SNWKrNo_VsuuWD6-2MNazZZFjwlnIWqNkfEloGAJAmS9EVHKiB1mScPA8I2zeOegFLq6i6OyycNtHpCf22IKX3Fp7T0KR3DmxunRfkAMxN9RXn5TfoHhWHYAeNlkV7uHgJ1Q=w1053-h790-s-no-gm?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczMW-HHMPhdCLRoI_tcBvl13tizX_NupG3VK5NfTMRfuOj20a_l9I8vtV365YY0ECxpwAbocc6mWofRLQO4Bp-FMO5N1K8vpoNHH2FbkevRgwm6MTvBCAdwoaksjsUJNBNzdoQd5-U6zZODkBk-tWPtH=w608-h811-s-no-gm?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczMtsi7QmygNEQIMwJZzT8BSjEyBHD2jpHKTASWRBl9q_kznPQt0IDe2-2Af3umVdV5ntiFnxvHJqmlW1mCJ6vOaGVw6wN-APIGijaF7ACBMYN3JRYt83XeaWaP6jJZCDj7Q5XvYKHjeFGl3skrzAwGl=w1081-h811-s-no-gm?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczPNfMxBY587MGGlSo4CfCSQbESGM6k27Qowx66q8xjL-Y9pXiEBfIe_1l9kCJNnDZUQYXbQDlc_twRzq8l9zM7a1IkN5JSvQr9IZgm_P0yBPB9uqpRiwuJ5ImlwVwRmFI1fu9hPI2e50z9vLHG9s6oe=w1442-h811-s-no-gm?authuser=0",
-								
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczNjbYCEwDBgCM2-JUTonr5rvLttsxGLP0LjmxtgYKtFU8AasMjjr5opQHdCwP0F-th9pGgGKC7M45bzgQ_MFKXsZvitPXSghcQp5qrkLJVDHve5GWEHAuGl5YJAK40CvBVgo8BPew9Gho931Qt0lwzJ=w1081-h811-s-no-gm?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczMDHTgeZSAh35sAAMkrY66vh8j9QmqVhRl-Z0a_R-5IzamI6jlllUm9ghSg9yHSHxjT6oTP11j1CSI12LGgoaEjRcnGFSYk4s6RXi8qu3QT2rnlK6dky-E4pm2bWfXw_SvqMbcaZZ5Ksw06jHO-EnH_=w608-h811-s-no-gm?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczPNfMxBY587MGGlSo4CfCSQbESGM6k27Qowx66q8xjL-Y9pXiEBfIe_1l9kCJNnDZUQYXbQDlc_twRzq8l9zM7a1IkN5JSvQr9IZgm_P0yBPB9uqpRiwuJ5ImlwVwRmFI1fu9hPI2e50z9vLHG9s6oe=w1442-h811-s-no-gm?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczOw5xr4JNolW2KdtJVI8I_nveURa4R_RVK5LVKJM1pA_bCqCbqFAs55SOTS9sAmOxn053Upc2zKhg7j6kPTgWN9fLLEBeXS_G7-IkN2RxXsvbGbQaEMKOdOu7w1XN1JFKahzE-80KfciKIuUEgshhGb=w1081-h811-s-no-gm?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczMWVYfNEVACvcQLWW_beDaXhfrYt4voB18qjW6tHL_WorgpOOsmoGWSOqT8_tG9P-xcumsXCmWxNzteU5frck5Y7IaRyG82weLRJZVTdpB3J4_uX6BXbxHkkN4Al8WKHn6oBghccFH583mk2EOYWqnN=w1081-h811-s-no-gm?authuser=0",
-								alt : "_blank",
-								type : "picture"
-							},
-							{
-								video_url : "https://photos.google.com/share/AF1QipNHWa5FK5hJPs37_a_DBKXXNlK8uZ8MMJtttydor7mRj-Im5v3sf4e_lgDtM9VdqQ/photo/AF1QipP16YSJX4-pkzYQrMLjcG6ZRheS_RTraM-ircjZ?key=OFdCbEVOMlpOMHNnX0RRTWF2QVVyOWVkTHBSbWxn",
-								alt : "_blank",
-								type : "video"
-							}
-							//{}
-						
-					];
-					
-					function generate_media(gellarys, startIndex, endIndex) {
-						let cards_media = '';
-						console.log("List length:",gellarys.length);
-						for (let i = startIndex; i < endIndex; i++) {
-							const gellary = gellarys[i];
-							if( "picture" == gellary.type )
-							{
-								console.log("This media type:",gellary.type);
+				{	
+					  fetch("https://script.google.com/macros/s/AKfycbwII0Lld5bbLbsy71ZoEu9Yh92APnybFc1ZnW2iJcZk9N_F-O-8-mK7P1GYgUiq-TyhHw/exec") // Replace with your deployed URL
+						.then(res => res.json())
+						.then(gellarys => {
+						  function generate_media(gellarys, startIndex, endIndex) {
+							let cards_media = '';
+							for (let i = startIndex; i < endIndex; i++) {
+							  const gellary = gellarys[i];
+							  if (gellary.type === "picture") {
 								cards_media += `
-									<div class=" bg-base-100 p-3  w-full h-full shadow-xl rounded-lg shadow-lg ">
-										<div>
-											<img alt="${gellary.alt}" class="mx-auto mb-4 rounded-lg w-full object-cover" src="${gellary.picture_url}" />
-										</div>
-									
+								  <div class="bg-base-100 p-3 w-full h-full shadow-xl rounded-lg">
+									<div>
+									  <img loading="lazy" alt="${gellary.alt || 'Gallery image'}" class="mx-auto mb-4 rounded-lg w-full object-cover" src="${gellary.url}" />
 									</div>
+								  </div>
 								`;
-							}
-							else if( "video" == gellary.type ){
-								console.log("This media type:",gellary.type);
+							  } else if (gellary.type === "video") {
 								cards_media += `
-									<div class=" bg-base-100 p-3  w-full h-full shadow-xl rounded-lg shadow-lg ">
-										<div>
-											<video alt="${gellary.alt}" class="mx-auto mb-4 rounded-lg w-full object-cover" />
-												<source src="${gellary.video_url}" type="video/mp4">
-											</video>
-										</div>
-									
+								  <div class="bg-base-100 p-3 w-full h-full shadow-xl rounded-lg">
+									<div>
+									  <video controls class="mx-auto mb-4 rounded-lg w-full object-cover">
+										<source src="${gellary.url}" type="video/mp4">
+										Your browser does not support the video tag.
+									  </video>
 									</div>
+								  </div>
 								`;
+							  }
 							}
-							else{
-								console.log("This media type:",gellary.type);
-								console.log("I guess you miss media type define.plese check....");
-								console.log("please chect list data part");
-							}
-							
-						}
-						return cards_media;
-					}
-					contentDiv.innerHTML = `
-						
-						<h2 class="text-6xl text-center font-bold text-pink-600">Gallery</h2>
-						
-						<div class="bg-gray-200 "> 
-						<br><br>
-							<div class=" w-full grid grid-cols-4 md:grid-cols-1 lg:grid-cols-3 gap-8 px-5">
+							return cards_media;
+						  }
+
+						  contentDiv.innerHTML = `
+							<h2 class="text-6xl text-center font-bold text-pink-600">Gallery</h2>
+							<div class="bg-gray-200">
+							  <br><br>
+							  <div class="w-full grid grid-cols-4 md:grid-cols-1 lg:grid-cols-3 gap-8 px-5">
 								${generate_media(gellarys, 0, gellarys.length)}
+							  </div>
+							  <br><br>
 							</div>
-							<br><br>
-						</div>
-					`;
-				}
-				
-				
-				else if(page === "contact")
-				{
+						  `;
+						})
+						.catch(err => {
+						  console.error("Failed to load gallery:", err);
+						  contentDiv.innerHTML = `<p class="text-red-500 text-4xl text-center">Failed to load gallery content.<br>please again click gallery...</p>`;
+						});
+					}
 					
-					contentDiv.innerHTML = `
-						<p class="text-3xl text-center text-green-500">contact</p>
+					
+					else if(page === "contact")
+					{
 						
-					`;
+						contentDiv.innerHTML = `
+							<p class="text-3xl text-center text-green-500">contact</p>
+							
+						`;
 				}
 				
 				
@@ -426,7 +316,11 @@
 						MSCS201: { courseId: "MSCS-201", courseName: " Advanced Operating Systems" },
 						MSCS202: { courseId: "MSCS-202", courseName: "Advanced Computer Network" },
 						MSCS203: { courseId: "MSCS-203", courseName: "AI & Applications" },
-						MSCS204: { courseId: "MSCS-204", courseName: "Advanced DBMS" }
+						MSCS204: { courseId: "MSCS-204", courseName: "Advanced DBMS" },
+						
+						MSCS301: { courseId: "MSCS-301", courseName: " Compiler Design" },
+						MSCS302: { courseId: "MSCS-302", courseName: "Discipline-centric Elective (E1)" },
+						MSCS304: { courseId: "MSCS-304", courseName: " Generic Elective (GE) " }
 					};
 					
 					const courses = [ // index:: start=0 end=n-1
@@ -453,9 +347,13 @@
 					/* 12 */{ ...commonCourses.MSCS203, partNo: "1", taughtBy: "A.C.M", downloadLink: "https://drive.google.com/drive/folders/1QvnfhoZj5iRbwNZ3zMW1uYFuRpy5Yswq?usp=sharing", target: "AI_ACM", hoverColor: "hover:bg-cyan-400" },
 							{ ...commonCourses.MSCS203, partNo: "2", taughtBy: "J.C", downloadLink: "https://drive.google.com/drive/folders/1kbuoTrNyUjGHKqcZOsm3EdFlkenOADlW?usp=sharing", target: "AI_JC", hoverColor: "hover:bg-cyan-500" },
 					/* 14 */{ ...commonCourses.MSCS204, partNo: "1", taughtBy: "A.C.M", downloadLink: "https://drive.google.com/drive/folders/1I7vSZrXAjQD0xNag-DhWTmH3hjBrbhQV?usp=sharing", target: "DBMS_ACM", hoverColor: "hover:bg-green-500" },
-					/* 15 */{ ...commonCourses.MSCS204, partNo: "2", taughtBy: "S.K/....", downloadLink: "https://drive.google.com/drive/folders/1_vdRWXR-GqQ5tZGyf2q6DXAwwdJgFTwX?usp=sharing", target: "DBMS_SK", hoverColor: "hover:bg-green-400" }
-
-						//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Semester – III $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+					/* 15 */{ ...commonCourses.MSCS204, partNo: "2", taughtBy: "S.K/....", downloadLink: "https://drive.google.com/drive/folders/1_vdRWXR-GqQ5tZGyf2q6DXAwwdJgFTwX?usp=sharing", target: "DBMS_SK", hoverColor: "hover:bg-green-400" },
+								//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Semester – III $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+						
+					/* 16 */{ ...commonCourses.MSCS301, partNo: "1", taughtBy: "R.K", downloadLink: "https://drive.google.com/drive/folders/1-dodXr1PlAoP6rGqbQJNdzP8HJ7BMEZj?usp=sharing", target: " Compiler Design_SK", hoverColor: "hover:bg-green-500" },
+					/* 17 */{ ...commonCourses.MSCS302, partNo: "1", taughtBy: "P.R", downloadLink: "https://drive.google.com/drive/folders/1LSC24XoEEY4dgthFSQR3QOp-DztIdR85?usp=sharing", target: "DBMS_PR", hoverColor: "hover:bg-pink-300" },
+					/* 18 */{ ...commonCourses.MSCS304, partNo: "1", taughtBy: ".......", downloadLink: "https://drive.google.com/drive/folders/1_IOmabXXnpAT26XXvZ2X3FkpZHBRtN0r?usp=sharing", target: "_____", hoverColor: "hover:bg-yellow-400" }
+					
 						//~~~~~~~~~~~~~~~~~~~++++++++++++++ Semester – IV  ++++++++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						
 					];
@@ -505,7 +403,7 @@
 						<div class="bg-pink-200"> <!-- ***Semester – II *** -->
 							<h3 class="text-5xl font-bold text-blue-800 p-4">SEMESTER – II</h3>
 							<div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-3 px-10">
-								${generateCourseCards(courses, 8, 15)}
+								${generateCourseCards(courses, 14, 15)}
 							</div>
 							<br><br>
 						</div>
@@ -513,7 +411,7 @@
 						<div class="bg-cyan-200">  <!-- ***Semester – III *** -->
 							<h3 class="text-5xl font-bold text-black p-4">SEMESTER – III</h3>
 							<div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-3 px-10">
-								${generateCourseCards(courses, )}
+								${generateCourseCards(courses, 16, 18)}
 								<br><br>
 							</div>
 						</div>
@@ -662,7 +560,7 @@
 			}	
 		</script>
 		
-		<footer class="bg-pink-500 text-white  mt-6 ">
+		<footer class="bg-pink-400 text-white  mt-6 ">
 			<div class="container mx-auto ">
 				<div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 py-4">
 					<!-- Column 1 -->
@@ -700,6 +598,21 @@
 								<img width="48" height="48" src="https://img.icons8.com/fluency/48/linkedin.png" alt="linkedin"/>
 							</a>
 						</ul>
+						<!--<div id="sfcfz82q3zltwsgdaha6fazd34yhf2t512n"></div>
+						<script 
+							type="text/javascript" 
+							src="https://counter1.optistats.ovh/private/counter.js?c=fz82q3zltwsgdaha6fazd34yhf2t512n&down=async" async>
+						</script>
+						<noscript>
+							<a 
+								href="https://www.freecounterstat.com" title="hit counter">
+									<img 
+										src="https://counter1.optistats.ovh/private/freecounterstat.php?c=fz82q3zltwsgdaha6fazd34yhf2t512n" 
+										border="0" 
+										title="hit counter" 
+										alt="hit counter">
+							</a>
+						</noscript> -->
 					</div>
 
 					<!-- Column 2 -->
@@ -716,6 +629,22 @@
 							<li class=" text-black text-2xl"><a href="http://uit.buruniv.ac.in/" target='_blank' rel='noopener noreferrer'>University Institute Of Technology(UIT)</a></li>
 							<li class=" text-black text-2xl"><a href="http://dde.buruniv.ac.in/" target='_blank' rel='noopener noreferrer'>Centre for Distance And Online Education(CDOE)</a></li>
 						</ul>
+						<br><br>
+						<div id="sfcpwnangknk2tdkera8hswlztjrctw8xq4"></div>
+						<script 
+							type="text/javascript" 
+							src="https://counter1.optistats.ovh/private/counter.js?c=pwnangknk2tdkera8hswlztjrctw8xq4&down=async" async>
+						</script>
+						<noscript>
+							<a href="https://www.freecounterstat.com" title="hit counter">
+								<img 
+									src="https://counter1.optistats.ovh/private/freecounterstat.php?c=pwnangknk2tdkera8hswlztjrctw8xq4" 
+									border="0" 
+									title="counter" 
+									alt="Hit counter">
+							</a>
+						</noscript>
+
 					</div>
 
 					<!-- Column 3 -->
@@ -738,7 +667,7 @@
 			</div>
 		</footer>
 		
-		<footer class="bg-pink-800 text-white p-4">
+		<footer class="bg-pink-700 text-white p-4">
 			<p class="text-center">&copy; 2025 Burdwan University. All rights reserved.</p>
 				<div class="flex justify-center space-x-4 mt-4 px-3">
 					<a class="hover:underline " href="https://m.facebook.com/swadesh.nandi.56/" target="facebook">
@@ -766,8 +695,9 @@
 					<p>Developed By : Swadesh Nandi</p>
 				</div>	
 				<div class="flex justify-center mt-2 px-3">
-					<P>Version :  3.2.1</P>
+					<P>Version :  3.3.2</P>
 				</div>
+				
 		</footer>
 			
 	</body>
@@ -793,5 +723,4 @@
 		// Update the date and time every second
 		setInterval(updateDateTime, 1000);
 	</script>
-
 </html>
