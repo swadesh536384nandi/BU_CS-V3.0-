@@ -1,3 +1,9 @@
+<!--this page update 
+		1. hit count use
+		2. dynamicaly picture linke use by google sheet with appscript
+		3. add 3rd sem notebook conteant
+		4. remove 2nd sem conteant   
+-->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -143,7 +149,7 @@
 						</li>
 						<li>
 							<a onclick="loadPage('gellary')"  href="#">
-							Gellary
+							Gallery
 							</a>
 						</li>	
 					</ul>
@@ -187,7 +193,7 @@
 				// =======================================CREATE Gellary Function===========================================
 				else if(page === "gellary")
 				{	
-					  fetch("https://script.google.com/macros/s/AKfycbwII0Lld5bbLbsy71ZoEu9Yh92APnybFc1ZnW2iJcZk9N_F-O-8-mK7P1GYgUiq-TyhHw/exec") // Replace with your deployed URL
+					  fetch("https://script.google.com/macros/s/AKfycbzWnRgqE9K8G1-mnx9nHf6JP-k_V_R2H4EWVNCokubb_EnaKpM72Yu2aPOlkwZvbDoJ1Q/exec") // Replace with your deployed URL
 						.then(res => res.json())
 						.then(gellarys => {
 						  function generate_media(gellarys, startIndex, endIndex) {
@@ -222,7 +228,7 @@
 							<h2 class="text-6xl text-center font-bold text-pink-600">Gallery</h2>
 							<div class="bg-gray-200">
 							  <br><br>
-							  <div class="w-full grid grid-cols-4 md:grid-cols-1 lg:grid-cols-3 gap-8 px-5">
+							  <div class="bg-white w-full grid grid-cols-4 md:grid-cols-1 lg:grid-cols-3 gap-8 px-5">
 								${generate_media(gellarys, 0, gellarys.length)}
 							  </div>
 							  <br><br>
@@ -621,7 +627,7 @@
 						<ul class="space-y-2">
 							<li>
 								<a onclick="loadPage('gellary')" class=" text-black text-2xl" href="#" >
-									Gellary
+									Gallery
 								</a>
 							</li>
 							<li class=" text-black text-2xl"><a href="https://www.buruniv.ac.in/Demo/Template.php?menu=Information&submenu=Holidays" target='_blank' rel='noopener noreferrer'>Holiday List</a></li>
