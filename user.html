@@ -7,6 +7,37 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!--<script>
+		// Redirect to login if not logged in
+			//let check ="true"
+			if (localStorage.getItem("loggedIn") !== "true") {
+				window.location.href = "Login.html";
+			}
+			/*if ( check === "true") {
+				window.location.href = "Login.html";
+			}*/
+		</script>-->
+		<script>
+			const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+			const loginTime = parseInt(localStorage.getItem("loginTime"));
+			const now = Date.now();
+			const sessionDuration = 15 * 60 * 1000; // 5 minutes
+
+			if (!isLoggedIn || isNaN(loginTime) || (now - loginTime > sessionDuration)) {
+			  localStorage.removeItem("loggedIn");
+			  localStorage.removeItem("loginTime");
+			  window.location.href = "Login.html";
+			} else {
+			  const remaining = sessionDuration - (now - loginTime);
+			  setTimeout(() => {
+				alert("⏰ Session expired. Again go to login page.");
+				localStorage.removeItem("loggedIn");
+				localStorage.removeItem("loginTime");
+				window.location.href = "Login.html";
+			  }, remaining);
+			}
+		</script>
+
 		<meta charset="utf-8"/>
 		<title>
 			BU:CS
@@ -149,9 +180,21 @@
 						</li>
 						<li>
 							<a onclick="loadPage('gellary')"  href="#">
-							Gallery
+							Gellary
 							</a>
-						</li>	
+						</li>
+						<li>
+							<div class="text-right px-5  ">
+								<button onclick="logout()" class="btn bg-red-600 text-white text-2xl font-bold px-6 py-2 rounded-lg">Logout</button>
+							</div>
+
+							<script>
+								function logout() {
+									localStorage.removeItem("loggedIn");
+									window.location.href = "Login.html";
+								}
+							</script>
+						</li>
 					</ul>
 				</nav>
 			</div>
@@ -228,7 +271,7 @@
 							<h2 class="text-6xl text-center font-bold text-pink-600">Gallery</h2>
 							<div class="bg-gray-200">
 							  <br><br>
-							  <div class="bg-white w-full grid grid-cols-4 md:grid-cols-1 lg:grid-cols-3 gap-8 px-5">
+							  <div class="w-full grid grid-cols-4 md:grid-cols-1 lg:grid-cols-3 gap-8 px-5">
 								${generate_media(gellarys, 0, gellarys.length)}
 							  </div>
 							  <br><br>
@@ -627,7 +670,7 @@
 						<ul class="space-y-2">
 							<li>
 								<a onclick="loadPage('gellary')" class=" text-black text-2xl" href="#" >
-									Gallery
+									Gellary
 								</a>
 							</li>
 							<li class=" text-black text-2xl"><a href="https://www.buruniv.ac.in/Demo/Template.php?menu=Information&submenu=Holidays" target='_blank' rel='noopener noreferrer'>Holiday List</a></li>
@@ -730,3 +773,4 @@
 		setInterval(updateDateTime, 1000);
 	</script>
 </html>
+
