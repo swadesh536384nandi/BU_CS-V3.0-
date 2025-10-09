@@ -61,10 +61,10 @@
 
         </form>
 
-        <p class="text-center text-sm text-gray-500 mt-4">
+    <!--    <p class="text-center text-sm text-gray-500 mt-4">
             Don't have an account?
             <a href="Signup.html" class="text-pink-600 font-semibold hover:underline">Sign Up</a>
-        </p>
+        </p>	-->
     </div>
 
     <script>
@@ -82,12 +82,14 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.result === "success") {
+						localStorage.setItem("loggedIn", "true");
+						localStorage.setItem("loginTime", Date.now());// USER FOR SEASION TIME 
                         message.textContent = "✅ Login successful! Welcome.";
                         message.classList.remove('hidden', 'text-red-600');
                         message.classList.add('text-green-600');
                         form.reset();
-						window.location.href = "user.html";
-						
+						window.location.href = "test_user.html";
+						slee
 						
 						
                     } else {
