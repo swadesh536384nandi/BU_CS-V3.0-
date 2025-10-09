@@ -13,7 +13,7 @@
 
         document.addEventListener('keydown', function(e) {
             // Disable Ctrl+C and Ctrl+U
-            if ((e.ctrlKey && (e.key === 'c' || e.key === 'u'))||(e.Key ==='Prt sc')) {
+            if ((e.ctrlKey && (e.key === 'c' || e.key === 'u'))||(e.Key ==='Prt sc') || e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") ||(e.ctrlKey && e.key === "U")) {
                 e.preventDefault();
             }
         });
@@ -88,7 +88,7 @@
                         message.classList.remove('hidden', 'text-red-600');
                         message.classList.add('text-green-600');
                         form.reset();
-						window.location.href = "test_user.html";
+						window.location.href = "user.html";
 						slee
 						
 						
