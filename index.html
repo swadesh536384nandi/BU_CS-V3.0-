@@ -55,33 +55,8 @@
 		</style>
 	</head>
 	
-	<script>
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            // Disable Ctrl+C and Ctrl+U
-            if ((e.ctrlKey && (e.key === 'c' || e.key === 'u'))||(e.Key ==='Prt sc')) {
-                e.preventDefault();
-            }
-        });
-		const express = require('express');
-		const app = express();
-
-		app.get('/set-cookie', (req, res) => {
-		res.cookie('sessionId', 'your-session-id', {
-        httpOnly: true, // Prevents JavaScript access
-        secure: true,   // Ensures the cookie is sent only over HTTPS
-        sameSite: 'Strict' // Controls cross-origin requests
-		});
-		res.send('Secure cookie set!');
-		});
-
-		app.listen(3000, () => {
-		console.log('Server is running on https://localhost:3000');
-		});
-    </script>  
+	<!-- right click loock-->
+	<script type="text/javascript" src="right_click.js" async="async"></script>  
 	
 	<body class="bg-white w-full">
 		<header class="bg-blue-500 text-white p-5">
@@ -133,17 +108,21 @@
 							</a>
 						</li>
 						<li>
-							<a onclick="loadPage('notebook')" class="hover:underline" href="Signup.html" target="home">
-							 NoteBook
-							</a>
+						<div class="text-right p-1">
+							<button class="btn bg-green-400 text-black text-2xl rounded-lg "style="width: 150px; height: 50px;">
+								<a onclick="loadPage('notebook')" class="hover:underline" href="Login.html" target="user_login"> <!--  Only login use-->
+								 User Login
+								</a>
+							</button>
+						</div>
 						</li>
 						<li>
 							<a onclick="loadPage('pre_yea_ques')" class="hover:underline" href="#">
 							Old Question
 						</li>
 						<li>
-							<a onclick="loadPage('contact')"  href="#">
-							Contact Us
+						<a onclick="loadPage('contact')"  href="#">
+							Contact
 							</a>
 						</li>	
 					</ul>
@@ -158,7 +137,7 @@
 			<!--<h3 class="text-6xl font-bold text-center text-red-600">***** the home section =>(V3.2) *****</h3> -->
 			<h2 
 				class="text-3xl font-bold text-green-500">
-				Click on 'NoteBook' option and download the ppt and pdf your need.
+				Click on 'User Login' option and download the ppt and pdf your need.
 			</h2>
 		</div>
 		
@@ -179,7 +158,7 @@
 					contentDiv.innerHTML = `
 						<h4 class="text-4xl font-bold text-black text-center text-cyan-400">Welcome to the Home Page</h4>
 						<h3 class="text-6xl font-bold text-center text-red-600">***** the home section =>(V3.2) *****</h3>
-						<h2 class="text-3xl px-10 font-bold text-green-500">Click on 'NoteBook' option and download the ppt and pdf your need.</h2>
+						<h2 class="text-3xl px-10 font-bold text-green-500">Click on 'User Login' option and download the ppt and pdf your need.</h2>
 					`;
 				} 
 				else if (page === "about")
@@ -332,10 +311,10 @@
 				}
 				
 				// =======================================CREATE Gellary Function===========================================
-				/* else if(page === "gellary")
+				/*else if(page === "gellary")
 				{
-					const gellarys =[
-							{
+					 const gellarys =[
+						{
 								picture_url : "https://lh3.googleusercontent.com/pw/AP1GczPp1Zlgwmnac_flBdYsudDzYC-31IciY7IIinq1y2AZWKDiR4brmFtjki9GIHTlfs5uA1QjPk8lz5eV7i4GgnKCkyQStmpjJHJxvTORzus4N4uhgyQcI4tAMVueNxUw1OU3phLMPJW1sUrHVk89R8YNZw=w1397-h786-s-no?authuser=0", 
 								alt : "_blank",
 								type : "picture"
@@ -466,7 +445,7 @@
 							<br><br>
 						</div>
 					`;
-				} */
+				}*/
 				
 				
 				else if(page === "contact")
@@ -718,7 +697,7 @@
 					
 				}
 				
-				/* else if(page === "notebook")
+				/*else if(page === "notebook")
 				{
 					
 					const commonCourses = {
@@ -750,7 +729,7 @@
 							{ ...commonCourses.MSCS104, partNo: "1 (Statistical Computing)", taughtBy: "JC & Sonali", downloadLink: "https://drive.google.com/drive/folders/1MOfOMi8C5F5sweC9cRQ9-baE10-ng1ws?usp=sharing", target: "SATI_JC_Sonali", hoverColor: "hover:bg-green-300" },
 						//################################# Semester – II  #####################################
 						
-							 { ...commonCourses.MSCS201, partNo: "1", taughtBy: "R.K", downloadLink: "https://drive.google.com/drive/folders/1Xrm3IME29nrWgwwVNICA0XcX-xi7721G?usp=sharing", target: "OS_RK", hoverColor: "hover:bg-blue-500" },	
+							{ ...commonCourses.MSCS201, partNo: "1", taughtBy: "R.K", downloadLink: "https://drive.google.com/drive/folders/1Xrm3IME29nrWgwwVNICA0XcX-xi7721G?usp=sharing", target: "OS_RK", hoverColor: "hover:bg-blue-500" },	
 							{ ...commonCourses.MSCS201, partNo: "2", taughtBy: "P.R", downloadLink: "https://drive.google.com/drive/folders/1eJs-HcKAt1exCk6XB4cyzKqCq5xwMlC6?usp=sharing", target: "OS_PR", hoverColor: "hover:bg-blue-400" },
 							{ ...commonCourses.MSCS202, partNo: "1", taughtBy: "S.K", downloadLink: "https://drive.google.com/drive/folders/1Duu7tCA9KPc8jrJMk9SzWxyQzT1QtKdm?usp=sharing", target: "Network_SK", hoverColor: "hover:bg-yellow-500" },
 							{ ...commonCourses.MSCS202, partNo: "2", taughtBy: "A.P", downloadLink: "https://drive.google.com/drive/folders/1Pq2lOKYKwhYfYsq7JJ74O4Bh-EuSgCnr?usp=sharing", target: "Network_AP", hoverColor: "hover:bg-yellow-400" },
@@ -830,7 +809,7 @@
 							</div>
 						</div>
 					`;
-				} */
+				}*/
 				
 				else if(page === "pre_yea_ques")
 				{
@@ -1011,7 +990,7 @@
 						<h3 class="text-3xl font-bold border-b-2 border-gray-600 pb-2">Quick Links</h3>
 						<ul class="space-y-2">
 							<li>
-								<a onclick="loadPage('gellary')" class=" text-black text-2xl" href="Signup.html" target="home">
+								<a onclick="loadPage('gellary')" class=" text-black text-2xl" href="Login.html" target="home">
 									Gellary
 								</a>
 							</li>
@@ -1020,6 +999,21 @@
 							<li class=" text-black text-2xl"><a href="http://uit.buruniv.ac.in/" target='_blank' rel='noopener noreferrer'>University Institute Of Technology(UIT)</a></li>
 							<li class=" text-black text-2xl"><a href="http://dde.buruniv.ac.in/" target='_blank' rel='noopener noreferrer'>Centre for Distance And Online Education(CDOE)</a></li>
 						</ul>
+						<br><br>
+						<div id="sfcpwnangknk2tdkera8hswlztjrctw8xq4"></div>
+						<script 
+							type="text/javascript" 
+							src="https://counter1.optistats.ovh/private/counter.js?c=pwnangknk2tdkera8hswlztjrctw8xq4&down=async" async>
+						</script>
+						<noscript>
+							<a href="https://www.freecounterstat.com" title="free counter">
+								<img 
+									src="https://counter1.optistats.ovh/private/freecounterstat.php?c=pwnangknk2tdkera8hswlztjrctw8xq4" 
+									border="0" 
+									title="free counter" 
+									alt="free counter">
+							</a>
+						</noscript>
 					</div>
 
 					<!-- Column 3 -->
@@ -1070,7 +1064,14 @@
 					<p>Developed By : Swadesh Nandi</p>
 				</div>	
 				<div class="flex justify-center mt-2 px-3">
-					<P>Version :  3.2</P>
+					<P>Version :  3.2.1</P>
+				</div>
+				<div class="text-right">
+							<button class="btn bg-green-300 text-black text-2xl py-1 rounded-lg">
+								<a onclick="loadPage('notebook')" class="hover:underline" href="upload.html" target="admin_login"> <!--  Only login use-->
+								 Admin Login
+								</a>
+							</button>
 				</div>
 		</footer>
 			
