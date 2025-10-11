@@ -103,33 +103,8 @@
 		  document.body.style.display = "block";
 		});
 	</script>
-	<script type="text/javascript" async="async">
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            // Disable Ctrl+C and Ctrl+U
-            if ((e.ctrlKey && (e.key === 'c' || e.key === 'u'))||(e.Key ==='Prt sc') || e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") ||(e.ctrlKey && e.key === "U")){
-                e.preventDefault();
-            }
-        });
-		const express = require('express');
-		const app = express();
-
-		app.get('/set-cookie', (req, res) => {
-		res.cookie('sessionId', 'your-session-id', {
-        httpOnly: true, // Prevents JavaScript access
-        secure: true,   // Ensures the cookie is sent only over HTTPS
-        sameSite: 'Strict' // Controls cross-origin requests
-		});
-		res.send('Secure cookie set!');
-		});
-
-		app.listen(3000, () => {
-		console.log('Server is running on https://localhost:3000');
-		});
-    </script> 
+	<!-- right click loock-->
+	<script type="text/javascript" src="right_click.js" async="async"></script>    
 	
 	<body class="bg-white w-full p-2">
 		<header class="bg-blue-500 text-white p-5">
@@ -200,7 +175,74 @@
 			</div>
 		</header>
 		
-		
+		<!-- Column 1: user information -->
+			<div class="bg-white p-10 rounded-2xl ">
+				<h1 class="text-3xl font-bold text-center text-purple-600 mb-6">My Profile</h1>
+
+				<div id="profile-container" class="text-center">
+					<img id="Profile-pic" class="w-32 h-32 mx-auto rounded-full border-4 border-purple-400 mb-4 object-cover" alt="Profile Picture"> 
+					<h2 id="Name" class="text-2xl font-semibold text-gray-800"></h2>
+					<p id="Email" class="text-gray-600"></p>
+				</div>
+
+				<div class="mt-6 border-t pt-4 text-left space-y-2 text-gray-700">
+					<p><span class="font-semibold">DOB:</span> <span id="DOB"></span></p>
+					<p><span class="font-semibold">Phone:</span> <span id="Phone"></span></p>
+					<p><span class="font-semibold">Gender:</span> <span id="Gender"></span></p>
+				</div>
+	
+				<div class="text-center mt-8">
+					<button onclick="logout()" class="bg-red-500 text-white px-6 py-2 rounded-xl hover:bg-red-600">Logout</button>
+				</div>
+			</div>
+
+			<script>
+				const sheetURL = "https://script.google.com/macros/s/AKfycbyo_5L3os46IKLcMkkE6k3U1PbQOOluxEYcBd6qXjcrv4d2xGpGuMe20T5dXL4PHOxl/exec";
+
+				// 🔒 Session check
+				window.onload = function () {
+					const isLoggedIn = localStorage.getItem("loggedIn");
+					const loginTime = localStorage.getItem("loginTime");
+					const email = localStorage.getItem("email");
+					const now = Date.now();
+
+					if (!isLoggedIn || now - loginTime > 15 * 60 * 1000 || !email) {
+						alert("Session expired. Please log in again.");
+						localStorage.clear();
+						window.location.href = "admin_login.html";
+					} 
+					else {
+						fetchUserData(email);
+					}
+				};
+
+				// 📄 Fetch only logged-in user data
+				async function fetchUserData(email) 
+				{
+					try 
+					{
+						const res = await fetch(`${sheetURL}?email=${encodeURIComponent(email)}`);
+						const data = await res.json();
+
+						if (data.result === "success") {
+						  const user = data.user;
+						  document.getElementById("Profile-pic").src = user.Profile_pic || "https://via.placeholder.com/150";
+						  document.getElementById("Name").textContent = user.Name;
+						  document.getElementById("Email").textContent = user.Email;
+						  document.getElementById("DOB").textContent = user.DOB;
+						  document.getElementById("Phone").textContent = user.Phone;
+						  document.getElementById("Gender").textContent = user.Gender;
+						} else {
+						  alert("User data not found.");
+						}
+					} 
+					catch (error) 
+					{
+						console.error("Error:", error);
+						alert("Error fetching user data.");
+					}
+				}
+			</script>
 		
 		<div id="content" class="content">
 			<h4 class="text-4xl font-bold text-black text-center">Welcome to the Home Page</h2>
@@ -236,7 +278,7 @@
 				// =======================================CREATE Gellary Function===========================================
 				else if(page === "gellary")
 				{	
-					  fetch("https://script.google.com/macros/s/AKfycbzWnRgqE9K8G1-mnx9nHf6JP-k_V_R2H4EWVNCokubb_EnaKpM72Yu2aPOlkwZvbDoJ1Q/exec") // Replace with your deployed URL
+					  fetch("https://script.google.com/macros/s/AKfycbz14BKhrFO1mdvFQ-w5Un-AgqsuDAo0aCKV0ILZi9ZClHTQJU_OeDPDskyAfwSd0pAp/exec") // Replace with your deployed URL
 						.then(res => res.json())
 						.then(gellarys => {
 						  function generate_media(gellarys, startIndex, endIndex) {
@@ -369,7 +411,8 @@
 						
 						MSCS301: { courseId: "MSCS-301", courseName: " Compiler Design" },
 						MSCS302: { courseId: "MSCS-302", courseName: "Discipline-centric Elective (E1)" },
-						MSCS304: { courseId: "MSCS-304", courseName: " Generic Elective (GE) " }
+						MSCS304: { courseId: "MSCS-304", courseName: " Generic Elective (GE) " },
+						MSCS307: { courseId: "MSCS-307", courseName: " Community Engagement Activities " }
 					};
 					
 					const courses = [ // index:: start=0 end=n-1
@@ -401,8 +444,8 @@
 						
 					/* 16 */{ ...commonCourses.MSCS301, partNo: "1", taughtBy: "R.K", downloadLink: "https://drive.google.com/drive/folders/1-dodXr1PlAoP6rGqbQJNdzP8HJ7BMEZj?usp=sharing", target: " Compiler Design_SK", hoverColor: "hover:bg-green-500" },
 					/* 17 */{ ...commonCourses.MSCS302, partNo: "1", taughtBy: "P.R", downloadLink: "https://drive.google.com/drive/folders/1LSC24XoEEY4dgthFSQR3QOp-DztIdR85?usp=sharing", target: "DBMS_PR", hoverColor: "hover:bg-pink-300" },
-					/* 18 */{ ...commonCourses.MSCS304, partNo: "1", taughtBy: ".......", downloadLink: "https://drive.google.com/drive/folders/1_IOmabXXnpAT26XXvZ2X3FkpZHBRtN0r?usp=sharing", target: "_____", hoverColor: "hover:bg-yellow-400" }
-					
+					/* 18 */{ ...commonCourses.MSCS304, partNo: "1", taughtBy: ".......", downloadLink: "https://drive.google.com/drive/folders/1_IOmabXXnpAT26XXvZ2X3FkpZHBRtN0r?usp=sharing", target: "_____", hoverColor: "hover:bg-yellow-400" },
+					/* 19 */{ ...commonCourses.MSCS307, partNo: "1", taughtBy: ".......", downloadLink: "https://drive.google.com/drive/folders/1Uu_XXyojbi6bdEsrG2jDwMEQvxy1gdV8?usp=sharing", target: "_____", hoverColor: "hover:bg-yellow-400" }
 						//~~~~~~~~~~~~~~~~~~~++++++++++++++ Semester – IV  ++++++++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						
 					];
@@ -452,7 +495,7 @@
 						<div class="bg-pink-200"> <!-- ***Semester – II *** -->
 							<h3 class="text-5xl font-bold text-blue-800 p-4">SEMESTER – II</h3>
 							<div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-3 px-10">
-								${generateCourseCards(courses, 14, 15)}
+								${generateCourseCards(courses, 8, 9)}
 							</div>
 							<br><br>
 						</div>
@@ -460,7 +503,7 @@
 						<div class="bg-cyan-200">  <!-- ***Semester – III *** -->
 							<h3 class="text-5xl font-bold text-black p-4">SEMESTER – III</h3>
 							<div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-3 px-10">
-								${generateCourseCards(courses, 16, 18)}
+								${generateCourseCards(courses, 16, 19)}
 								<br><br>
 							</div>
 						</div>
@@ -746,31 +789,16 @@
 				<div class="flex justify-center mt-2 px-3">
 					<P>Version :  3.3.2</P>
 				</div>
+				<div class="flex mt-2 px-3">
+					<ul class="space-y-2 ">
+						<li class="text-black text-2xl"><a href="upload.html" target='_upload' rel='noopener noreferrer' class="text-blue-400">Admin Login</a></li>
+					</ul>	
+				</div>
 				
 		</footer>
 			
 	</body>
 
-	<script>
-		function updateDateTime() {
-			const now = new Date();
-			const options = { 
-				year: 'numeric', 
-				month: 'long', //long
-				day: 'numeric', 
-				hour: '2-digit', 
-				minute: '2-digit', 
-				second: '2-digit',
-				hour24:  true
-			};
-			document.getElementById('dateTime').innerText = now.toLocaleString('en-US', options);
-		}
-
-		// Update the date and time immediately
-		updateDateTime();
-
-		// Update the date and time every second
-		setInterval(updateDateTime, 1000);
-	</script>
+	<!-- right click loock-->
+<script type="text/javascript" src="clock.js" async="async"></script>    
 </html>
-
