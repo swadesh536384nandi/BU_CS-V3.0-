@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Signup Page with Unique Phone Check</title>
+    <title>Signup Page with Unique email </title>
     <script src="https://cdn.tailwindcss.com"></script>
 	
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
@@ -108,7 +108,7 @@
     </div>
     
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyG-YVpUjZJyuO5rMw_Y-GYDArk-2rXOg6rl7Va0sQYJm6dNkjDaorA-BLvC1qwtm6l0g/exec';  // 🔗 Replace with your Web App URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbw50NCqPZhPSqfGXKyI4zX-tmtFPUwTVLyC2qEdoMsTbNMiLeUIYwIaU1iEPYjxEW3F/exec';  // 🔗 Replace with your Web App URL
         const form = document.forms['google-sheet'];
         const message = document.getElementById('success-message');
         const submitButton = document.querySelector('.submit-btn');
@@ -139,7 +139,7 @@
 						window.location.href = "Login.html";
                     } else if (data.result === "duplicate") {
 						alert("Phone number already registered.");
-                        message.textContent = "⚠️ Phone number already registered.";
+                        message.textContent = "⚠️ Email number already registered.";
                         message.classList.remove('hidden', 'text-green-600');
                         message.classList.add('text-red-600');
 						window.location.href = "Login.html";
