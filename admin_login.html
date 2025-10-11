@@ -1,0 +1,91 @@
+<!--
+1.upload before check link  directory page after login
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<!-- right click loock-->
+<script type="text/javascript" src="right_click.js" async="async"></script> 
+
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-3xl shadow-2xl w-96">
+        <h2 class="text-3xl font-extrabold text-center text-pink-600 mb-6">Admin Login</h2>
+
+        <form method="POST" name="login-form" class="space-y-5">
+
+            <input type="email" name="Email" placeholder="Email Address" required
+                class="w-full px-4 py-3 border border-purple-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500">
+
+            <input type="password" name="Password" placeholder="Password" required
+				pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$"
+                title="Password must be 8-12 chars with 1 letter, 1 digit, and 1 special character."
+                class="w-full px-4 py-3 border border-purple-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500">
+            
+            <button type="submit"
+                class="login-btn w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-3 rounded-xl font-semibold text-lg shadow-lg hover:from-pink-600 hover:to-purple-600 transition duration-300">
+                Login
+            </button>
+
+            <p id="login-message" class="hidden text-center font-semibold mt-4"></p>
+
+        </form>
+
+    <!--    <p class="text-center text-sm text-gray-500 mt-4">
+            Don't have an account?
+            <a href="Signup.html" class="text-pink-600 font-semibold hover:underline">Sign Up</a>
+        </p>	-->
+    </div>
+
+    <script>
+        
+		const scriptURL = 'https://script.google.com/macros/s/AKfycbzGCC4KrcHWwdi_V604_coMklXypg-OurY2pQj1wuCQxzRhNF42zHOIYPEpydSVukI/exec';  // 🔗 Replace with your login backend URL
+        const form = document.forms['login-form'];
+        const message = document.getElementById('login-message');
+        const loginButton = document.querySelector('.login-btn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            loginButton.disabled = true;
+            message.classList.add('hidden');
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === "success") {
+						localStorage.setItem("loggedIn", "true");
+						localStorage.setItem("loginTime", Date.now());// USER FOR SEASION TIME 
+						localStorage.setItem("email", form.Email.value); 
+						
+                        message.textContent = "✅ Login successful! Welcome.";
+                        message.classList.remove('hidden', 'text-red-600');
+                        message.classList.add('text-green-600');
+                        form.reset();
+						window.location.href = "upload.html";// check link before directory page
+						
+						
+						
+                    } else {
+						alert("Invalid input.");
+                        message.textContent = "❌ Invalid Email address or password.";
+                        message.classList.remove('hidden', 'text-green-600');
+                        message.classList.add('text-red-600');
+                    }
+                    loginButton.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    message.textContent = "❌ Server down ,Login failed. Try again.";
+                    message.classList.remove('hidden', 'text-green-600');
+                    message.classList.add('text-red-600');
+                    loginButton.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>

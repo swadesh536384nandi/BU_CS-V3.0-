@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script>
+			const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+			const loginTime = parseInt(localStorage.getItem("loginTime"));
+			const now = Date.now();
+			const sessionDuration = 15 * 60 * 1000; // 5 minutes
+
+			if (!isLoggedIn || isNaN(loginTime) || (now - loginTime > sessionDuration)) {
+			  localStorage.removeItem("loggedIn");
+			  localStorage.removeItem("loginTime");
+			  window.location.href = "admin_login.html";
+			} else {
+			  const remaining = sessionDuration - (now - loginTime);
+			  setTimeout(() => {
+				alert("⏰ Session expired. Again go to login page.");
+				localStorage.removeItem("loggedIn");
+				localStorage.removeItem("loginTime");
+				window.location.href = "admin_login.html";
+			  }, remaining);
+			}
+		</script>
+		<meta charset="UTF-8">
+		<title>Upload File to Google Drive Folder</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+		
+		<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+		<link rel="icon" href="https://lh3.googleusercontent.com/pw/AP1GczNO1Wjvu5H02biLUOhGj6H1gQfd-l2uhR0Pl7BDpDEEo-UUy9XGxxGAMAxYvLU1orC9p6Isv7W8ubIOZOl4ssg-wV33HiILmmz1GRN_d6Aezl6zXU99Apya8MEHxR_cJ15woi7O7xjhEdXfomm6aHy4=w691-h236-s-no-gm?authuser=0" size="32x32">
+		<style>
+			body {
+				
+				font-family: 'Roboto', sans-serif;
+				overflow: auto;
+				background-color: green-800;
+				display:full
+				
+			}
+			a:hover {
+				background-color: white;
+				text-decoration: underline;
+				text-decoration-color: black
+			}
+			
+			
+			.menu a {
+				cursor: pointer;
+				text: underline;
+			
+		</style>
+	</head>
+	
+	<script type="text/javascript" src="right_click.js" async="async"></script>
+	
+	<body class="bg-cyan-500">
+		<header class="bg-blue-500 text-white p-5">
+			<div class="container mx-auto flex justify-between items-center">
+				
+				<img class="float-none"src="https://www.buruniv.ac.in/Demo/Images/bu_logo90.png" width="90" height="70">
+				<h1 class="text-3xl font-bold">
+					বর্ধমান বিশ্ববিদ্যালয়<br>The University of Burdwan
+				</h1>
+				
+				<div class="text-yellow-300 text-3xl font-bold hover:bg-black"id="dateTime"></div>
+			
+				<img class="mx-auto rounded-full w-20 h-20" src="https://lh3.googleusercontent.com/pw/AP1GczNbD8zEG2RsXGraKuX2lvnM1542NCVM8uQPlnUVcP8kdbCVIJFtPSZAZzFPVydIsDgVLI1LV2wz6XYQuCeDJHlrVs9UyjTjm6Mn73xX7RFcctrTekXjkYFKd635rHnr-9qTM-0afvaP-rB_RPf_zJkH=w768-h656-s-no-gm?authuser=0" width="103" height="70">
+				
+				<h3 class="text-2xl font-bold ">Department of Computer Science</h3>
+			</div>
+		</header>
+		
+		
+		<!--<header class="bg-yellow-300 text-black p-2">
+			<div class="w-full  p-2 items-center">
+				<nav >
+					<ul class="flex space-x-8 text-2xl">
+						<!--<li>
+							<a onclick="loadPage('home')"  href="#">
+							Home
+							</a>
+						</li>
+						<li>
+							<a onclick="loadPage('syllabus')"  href="#">
+							Syllabus
+							</a>
+						</li>
+						<li>
+							<a onclick="loadPage('notebook')" class="hover:underline" href="#" >
+							NoteBook
+							</a>
+						</li>
+						<li>
+							<a onclick="loadPage('pre_yea_ques')" class="hover:underline" href="#">
+							Old Question
+						</li>
+						<li>
+							<a onclick="loadPage('gellary')"  href="#">
+							Gellary
+							</a>
+						</li>
+						<li>
+							<div class="text-right px-5  ">
+								<button onclick="logout()" class="btn bg-red-600 text-white text-2xl font-bold px-6 py-2 rounded-lg">Logout</button>
+							</div>
+
+							<script>
+								function logout() {
+									localStorage.removeItem("loggedIn");
+									window.location.href = "admin_login.html";
+								}
+							</script>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header> -->
+		<div class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-8 p-4">		
+			<!-- Column 1: user information -->
+			<div class="bg-white p-10 rounded-2xl ">
+				<h1 class="text-3xl font-bold text-center text-purple-600 mb-6">My Profile</h1>
+
+				<div id="profile-container" class="text-center">
+					<img id="Profile-pic" class="w-32 h-32 mx-auto rounded-full border-4 border-purple-400 mb-4 object-cover" alt="Profile Picture"> 
+					<h2 id="Name" class="text-2xl font-semibold text-gray-800"></h2>
+					<p id="Email" class="text-gray-600"></p>
+				</div>
+
+				<div class="mt-6 border-t pt-4 text-left space-y-2 text-gray-700">
+					<p><span class="font-semibold">DOB:</span> <span id="DOB"></span></p>
+					<p><span class="font-semibold">Phone:</span> <span id="Phone"></span></p>
+					<p><span class="font-semibold">Gender:</span> <span id="Gender"></span></p>
+				</div>
+	
+				<div class="text-center mt-8">
+					<button onclick="logout()" class="bg-red-500 text-white px-6 py-2 rounded-xl hover:bg-red-600">Logout</button>
+				</div>
+			</div>
+
+			<script>
+				const sheetURL = "https://script.google.com/macros/s/AKfycbzGCC4KrcHWwdi_V604_coMklXypg-OurY2pQj1wuCQxzRhNF42zHOIYPEpydSVukI/exec";
+
+				// 🔒 Session check
+				window.onload = function () {
+					const isLoggedIn = localStorage.getItem("loggedIn");
+					const loginTime = localStorage.getItem("loginTime");
+					const email = localStorage.getItem("email");
+					const now = Date.now();
+
+					if (!isLoggedIn || now - loginTime > 15 * 60 * 1000 || !email) {
+						alert("Session expired. Please log in again.");
+						localStorage.clear();
+						window.location.href = "admin_login.html";
+					} 
+					else {
+						fetchUserData(email);
+					}
+				};
+
+				// 📄 Fetch only logged-in user data
+				async function fetchUserData(email) 
+				{
+					try 
+					{
+						const res = await fetch(`${sheetURL}?email=${encodeURIComponent(email)}`);
+						const data = await res.json();
+
+						if (data.result === "success") {
+						  const user = data.user;
+						  document.getElementById("Profile-pic").src = user.Profile_pic || "https://via.placeholder.com/150";
+						  document.getElementById("Name").textContent = user.Name;
+						  document.getElementById("Email").textContent = user.Email;
+						  document.getElementById("DOB").textContent = user.DOB;
+						  document.getElementById("Phone").textContent = user.Phone;
+						  document.getElementById("Gender").textContent = user.Gender;
+						} else {
+						  alert("User data not found.");
+						}
+					} 
+					catch (error) 
+					{
+						console.error("Error:", error);
+						alert("Error fetching user data.");
+					}	
+				}
+			    function logout() {
+					localStorage.clear();
+					window.location.href = "admin_login.html";
+				}
+			</script>
+			
+			<!-- Column 2: UPLOAD FILE -->
+			
+			<div class="bg-white p-10 rounded-2xl ">
+				<h2 class="text-xl font-bold mb-4 text-center">Upload File</h2>
+
+				<!-- Folder dropdown -->
+				<label class="block mb-2 text-gray-700">Select Folder:</label>
+				<select id="folderName" class="mb-4 w-full p-2 border rounded">
+					<option value="">-- Choose Folder --</option>
+					<option value="DSA"> MSCS-101: Advanced Algorithm Design	</option>
+					<option value="Architecture"> MSCS-102: Advanced Computer Architecture	</option>
+					<option value="Software Engineering "> MSCS-103:  Advanced Software Engineering	</option>
+					<option value=" Numerical & Statistical"> MSCS-104:  Numerical & Statistical Computing	</option>
+					<option value="Operating Systems"> MSCS-201: Advanced Operating Systems  </option>
+					<option value="Computer Network"> MSCS-202: Advanced Computer Networks </option>
+					<option value="Artificial Intelligence"> MSCS-203: AI & Applications </option>
+					<option value="DBMS"> MSCS-204: Advanced DBMS </option>
+					<option value="Compiler Design"> MSCS-301: Compiler Design </option>
+					<option value="E1_Cryptography"> MSCS-302: Discipline-centric Elective (E1)  </option>
+					<option value="Generic Elective (GE)"> MSCS-304: Generic Elective (GE)  </option>
+					<option value="CEA"> MSCS-307: Community Engagement Activities  </option>
+					<!--<option value="MSCS-401"> MSCS-401: Discipline-centric  Elective (E2) </option>
+					<option value="MSCS-402"> MSCS-402: Discipline-centric  Elective (E3) </option>
+					<option value="MSCS-404"> MSCS-404: Seminar and Grand Viva  </option>	-->		
+					<option value="SEM 1"> previous year question::sem 1  </option>
+					<option value="SEM 2"> previous year question::sem 2  </option>
+					<option value="SEM 3"> previous year question::sem 3  </option>
+					<option value="SEM 4"> previous year question::sem 4  </option>
+				</select>
+
+				<!-- File input -->
+				<input id="file" type="file" accept=".pdf,.jpg,.jpeg,.png,.py,.css,.html,.js" class="mb-4 w-full" />
+
+				<button onclick="uploadFile()" class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700">
+					Upload
+				</button>
+
+				<p id="msg" class="mt-4 text-center text-sm text-gray-600"></p>
+			</div>
+			<script type="text/javascript" src="upload.js" async="async"></script>
+			<!--end of columm div-->
+		</div> 
+	  
+		<footer class="bg-pink-700 text-white p-4">
+			<p class="text-center">&copy; 2025 Burdwan University. All rights reserved.</p>
+				<div class="flex justify-center space-x-4 mt-4 px-3">
+					<a class="hover:underline " href="https://m.facebook.com/swadesh.nandi.56/" target="facebook">
+						<i class="fab fa-facebook-f" style='font-size:26px;color:blue'>
+						</i>
+				   </a>
+				   
+					<a class="hover:underline text-black font-bold" href="https://www.instagram.com/swadesh.nandi/" target = "instagram"> 
+						<i class="fab fa-instagram" style='font-size:26px;color:yellow'></i>
+					</a>
+					<!-- linkedin-->
+					<a href="https://www.linkedin.com/in/swadesh-nandi-4992412b9/" class="hover:underline text-black font-bold px-2" target="linkedin">
+						<img width="48" height="48" src="https://img.icons8.com/fluency/48/linkedin.png" alt="linkedin"/>
+					</a>
+							
+					<!--<a class="hover:underline" href="tel:">
+						<p class="text-black  text-1xl font-bold text-blue-500"><i class="fas fa-phone mr-3 text-black" style='font-size:26px;color:blue'></i>9749056152</p>
+					</a> -->
+				</div>
+				
+				<div class="flex justify-center  px-14">
+					<img alt="logo" class="max-auto rounded-full w-20 h-20 items-center" height="200" src="https://lh3.googleusercontent.com/pw/AP1GczOwNMpbXkLSCf63nR4jZyRVA6pDPmA2UN5oJzyqBf_P5GmRMc-Ed9WNVgoo6OGfn2ZErtN8zk2Zy0Q9LxAvdxjfzMbbnXS1abPMKSbLZWMux8CgtOme9ozyfSZw45z2WgZ3bVIGHEDedZQ_8gRwcgU=w640-h480-s-no-gm?authuser=0" width="80"/>
+				</div>
+				<div class="flex justify-center mt-2 px-3">
+					<p>Developed By : Swadesh Nandi</p>
+				</div>	
+				<div class="flex justify-center mt-2 px-3">
+					<P>Version :  3.3.2</P>
+				</div>		
+		</footer>
+		<script type="text/javascript" src="clock.js" async="async"></script>
+	</body>
+</html>
