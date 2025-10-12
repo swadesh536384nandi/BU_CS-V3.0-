@@ -2,7 +2,8 @@
 		1. hit count use
 		2. dynamicaly picture linke use by google sheet with appscript
 		3. add 3rd sem notebook conteant
-		4. remove 2nd sem conteant   
+		4. remove 2nd sem conteant (only AI paper show)
+		5. add show  user info profile 	
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -174,26 +175,26 @@
 				</nav>
 			</div>
 		</header>
-		
+		<br>
 		<!-- Column 1: user information -->
-			<div class="bg-white p-10 rounded-2xl ">
-				<h1 class="text-3xl font-bold text-center text-purple-600 mb-6">My Profile</h1>
+			<div class="bg-cyan-200 p-10 rounded-2xl ">
+				<h1 class="text-4xl font-bold text-center text-purple-700 mb-6">My Profile</h1>
 
 				<div id="profile-container" class="text-center">
-					<img id="Profile-pic" class="w-32 h-32 mx-auto rounded-full border-4 border-purple-400 mb-4 object-cover" alt="Profile Picture"> 
-					<h2 id="Name" class="text-2xl font-semibold text-gray-800"></h2>
-					<p id="Email" class="text-gray-600"></p>
+					<img id="ImageURL" class="w-32 h-32 mx-auto rounded-full border-4 border-pink-500 mb-4 object-cover" alt="Profile Picture"> 
+					<h2 id="Name" class="text-3xl font-semibold text-gray-800"></h2>
+					<p id="Email" class="text-2xl text-black"></p>
 				</div>
 
-				<div class="mt-6 border-t pt-4 text-left space-y-2 text-gray-700">
-					<p><span class="font-semibold">DOB:</span> <span id="DOB"></span></p>
-					<p><span class="font-semibold">Phone:</span> <span id="Phone"></span></p>
-					<p><span class="font-semibold">Gender:</span> <span id="Gender"></span></p>
+				<div class="mt-6 border-t pt-4 text-left space-y-2 text-gray-800">
+					<p><span class="text-2xl font-semibold">DOB: </span> <span class="font-semibold" id="DOB"></span></p>
+					<p><span class="text-2xl font-semibold">Phone: </span> <span class="font-semibold" id="Phone"></span></p>
+					<p><span class="text-2xl font-semibold">Gender: </span> <span class="font-semibold" id="Gender"></span></p>
 				</div>
 			</div>
 
 			<script>
-				const sheetURL = "https://script.google.com/macros/s/AKfycbyo_5L3os46IKLcMkkE6k3U1PbQOOluxEYcBd6qXjcrv4d2xGpGuMe20T5dXL4PHOxl/exec";
+				const sheetURL = "https://script.google.com/macros/s/AKfycbz9SC4pzzgWXcevvFWkIx0xToCdSc0xtXz4ertMWX_DclySlODkpAiWyozH3AuF9YgnXg/exec";
 
 				// 🔒 Session check
 				window.onload = function () {
@@ -205,7 +206,7 @@
 					if (!isLoggedIn || now - loginTime > 15 * 60 * 1000 || !email) {
 						alert("Session expired. Please log in again.");
 						localStorage.clear();
-						window.location.href = "admin_login.html";
+						window.location.href = "Login.html";
 					} 
 					else {
 						fetchUserData(email);
@@ -222,7 +223,7 @@
 
 						if (data.result === "success") {
 						  const user = data.user;
-						  document.getElementById("Profile-pic").src = user.Profile_pic || "https://via.placeholder.com/150";
+						  document.getElementById("ImageURL").src = user.ImageURL || "https://via.placeholder.com/150";
 						  document.getElementById("Name").textContent = user.Name;
 						  document.getElementById("Email").textContent = user.Email;
 						  document.getElementById("DOB").textContent = user.DOB;
@@ -274,7 +275,7 @@
 				// =======================================CREATE Gellary Function===========================================
 				else if(page === "gellary")
 				{	
-					  fetch("https://script.google.com/macros/s/AKfycbz14BKhrFO1mdvFQ-w5Un-AgqsuDAo0aCKV0ILZi9ZClHTQJU_OeDPDskyAfwSd0pAp/exec") // Replace with your deployed URL
+					  fetch("https://script.google.com/macros/s/AKfycbzOKRhq2sHQ943zvmxFccrcT-4rKuilW8QjvJJW8InqOW38_IDzn9LUrizinM9dEBTxDA/exec") // Replace with your deployed URL
 						.then(res => res.json())
 						.then(gellarys => {
 						  function generate_media(gellarys, startIndex, endIndex) {
@@ -491,7 +492,7 @@
 						<div class="bg-pink-200"> <!-- ***Semester – II *** -->
 							<h3 class="text-5xl font-bold text-blue-800 p-4">SEMESTER – II</h3>
 							<div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-3 px-10">
-								${generateCourseCards(courses, 8, 9)}
+								${generateCourseCards(courses, 12, 13)}
 							</div>
 							<br><br>
 						</div>
@@ -785,10 +786,12 @@
 				<div class="flex justify-center mt-2 px-3">
 					<P>Version :  3.3.2</P>
 				</div>
-				<div class="flex mt-2 px-3">
-					<ul class="space-y-2 ">
-						<li class="text-black text-2xl"><a href="upload.html" target='_upload' rel='noopener noreferrer' class="text-blue-400">Admin Login</a></li>
-					</ul>	
+				<div class="text-right">
+							<button class="btn bg-green-300 text-black text-2xl py-1 rounded-lg">
+								<a onclick="loadPage('notebook')" class="hover:underline" href="upload.html" target="admin_login"> <!--  Only login use-->
+								 Admin Login
+								</a>
+							</button>
 				</div>
 				
 		</footer>
