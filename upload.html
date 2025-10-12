@@ -2,21 +2,21 @@
 <html lang="en">
 	<head>
 		<script>
-			const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-			const loginTime = parseInt(localStorage.getItem("loginTime"));
+			const isLoggedIn = localStorage.getItem("adminLoggedIn") === "true";
+			const adminLoginTime = parseInt(localStorage.getItem("adminLoginTime"));
 			const now = Date.now();
-			const sessionDuration = 15 * 60 * 1000; // 5 minutes
+			const sessionDuration = 15 * 60 * 1000; // 15 minutes
 
-			if (!isLoggedIn || isNaN(loginTime) || (now - loginTime > sessionDuration)) {
-			  localStorage.removeItem("loggedIn");
-			  localStorage.removeItem("loginTime");
+			if (!isLoggedIn || isNaN(adminLoginTime) || (now - adminLoginTime > sessionDuration)) {
+			  localStorage.removeItem("adminLoggedIn");
+			  localStorage.removeItem("adminLoginTime");
 			  window.location.href = "admin_login.html";
 			} else {
-			  const remaining = sessionDuration - (now - loginTime);
+			  const remaining = sessionDuration - (now - adminLoginTime);
 			  setTimeout(() => {
 				alert("⏰ Session expired. Again go to login page.");
-				localStorage.removeItem("loggedIn");
-				localStorage.removeItem("loginTime");
+				localStorage.removeItem("adminLoggedIn");
+				localStorage.removeItem("adminLoginTime");
 				window.location.href = "admin_login.html";
 			  }, remaining);
 			}
@@ -121,56 +121,51 @@
 		<div class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-8 p-4">		
 			<!-- Column 1: user information -->
 			<div class="bg-white p-10 rounded-2xl ">
-				<h1 class="text-3xl font-bold text-center text-purple-600 mb-6">My Profile</h1>
+				<h1 class="text-4xl font-bold text-center text-purple-700 mb-6">My Profile</h1>
 
 				<div id="profile-container" class="text-center">
-					<img id="Profile-pic" class="w-32 h-32 mx-auto rounded-full border-4 border-purple-400 mb-4 object-cover" alt="Profile Picture"> 
-					<h2 id="Name" class="text-2xl font-semibold text-gray-800"></h2>
-					<p id="Email" class="text-gray-600"></p>
+					<img id="ImageURL" class="w-32 h-32 mx-auto rounded-full border-4 border-pink-500 mb-4 object-cover" alt="Profile Picture"> 
+					<h2 id="Name" class="text-3xl font-semibold text-gray-800"></h2>
+					<p id="Email" class="text-2xl text-black"></p>
 				</div>
 
-				<div class="mt-6 border-t pt-4 text-left space-y-2 text-gray-700">
-					<p><span class="font-semibold">DOB:</span> <span id="DOB"></span></p>
-					<p><span class="font-semibold">Phone:</span> <span id="Phone"></span></p>
-					<p><span class="font-semibold">Gender:</span> <span id="Gender"></span></p>
-				</div>
-	
-				<div class="text-center mt-8">
-					<button onclick="logout()" class="bg-red-500 text-white px-6 py-2 rounded-xl hover:bg-red-600">Logout</button>
+				<div class="mt-6 border-t pt-4 text-left space-y-2 text-gray-800">
+					<p><span class="text-2xl font-semibold">DOB: </span> <span class="font-semibold" id="DOB"></span></p>
+					<p><span class="text-2xl font-semibold">Phone: </span> <span class="font-semibold" id="Phone"></span></p>
+					<p><span class="text-2xl font-semibold">Gender: </span> <span class="font-semibold" id="Gender"></span></p>
 				</div>
 			</div>
 
 			<script>
-				const sheetURL = "https://script.google.com/macros/s/AKfycbzGCC4KrcHWwdi_V604_coMklXypg-OurY2pQj1wuCQxzRhNF42zHOIYPEpydSVukI/exec";
-
+				const sheetURL = "https://script.google.com/macros/s/AKfycbzfLjQ4y5HJhveNDBeNg3n-nQbjoazZlu3oUhJQFdVCBTWl_3SVu0UIhZ-hZIiOxDj6PA/exec";
 				// 🔒 Session check
 				window.onload = function () {
-					const isLoggedIn = localStorage.getItem("loggedIn");
-					const loginTime = localStorage.getItem("loginTime");
-					const email = localStorage.getItem("email");
+					const isLoggedIn = localStorage.getItem("adminLoggedIn");
+					const adminLoginTime = localStorage.getItem("adminLoginTime");
+					const adminEmail = localStorage.getItem("adminEmail");
 					const now = Date.now();
 
-					if (!isLoggedIn || now - loginTime > 15 * 60 * 1000 || !email) {
+					if (!isLoggedIn || now - adminLoginTime > 15 * 60 * 1000 || !adminEmail) {
 						alert("Session expired. Please log in again.");
 						localStorage.clear();
 						window.location.href = "admin_login.html";
 					} 
 					else {
-						fetchUserData(email);
+						fetchUserData(adminEmail);
 					}
 				};
 
 				// 📄 Fetch only logged-in user data
-				async function fetchUserData(email) 
+				async function fetchUserData(adminEmail) 
 				{
 					try 
 					{
-						const res = await fetch(`${sheetURL}?email=${encodeURIComponent(email)}`);
+						const res = await fetch(`${sheetURL}?adminEmail=${encodeURIComponent(adminEmail)}`);
 						const data = await res.json();
 
 						if (data.result === "success") {
 						  const user = data.user;
-						  document.getElementById("Profile-pic").src = user.Profile_pic || "https://via.placeholder.com/150";
+						  document.getElementById("ImageURL").src = user.ImageURL || "https://via.placeholder.com/150";
 						  document.getElementById("Name").textContent = user.Name;
 						  document.getElementById("Email").textContent = user.Email;
 						  document.getElementById("DOB").textContent = user.DOB;
@@ -264,7 +259,21 @@
 				</div>	
 				<div class="flex justify-center mt-2 px-3">
 					<P>Version :  3.3.2</P>
-				</div>		
+				</div>
+				<div id="sfc126d5l3sgjtwtnpsj1qdagpn7xxt5sn8" class="flex justify-center mt-2 px-3"></div>
+				<script 
+					type="text/javascript" 
+					src="https://counter1.optistats.ovh/private/counter.js?c=126d5l3sgjtwtnpsj1qdagpn7xxt5sn8&down=async" async>
+				</script>
+				<noscript>
+					<a href="https://www.freecounterstat.com" 
+					   title="hit counter html code">
+					   <img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=126d5l3sgjtwtnpsj1qdagpn7xxt5sn8" 
+					   border="0" 
+					   title="hit counter html code" 
+					   alt="hit counter html code">
+					</a>
+				</noscript>				
 		</footer>
 		<script type="text/javascript" src="clock.js" async="async"></script>
 	</body>
