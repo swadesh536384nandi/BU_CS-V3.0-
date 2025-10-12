@@ -1,18 +1,35 @@
 <!--
 1.upload before check link  directory page after login
+2. here user id:email
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>admin Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+		<title>Admin login</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+		
+		<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+		<link rel="icon" href="https://lh3.googleusercontent.com/pw/AP1GczOde5KMdLQtz2uKAyjFiFgwgGqQe-PAoObt8qROUYVckjkQ7O3vzoZM8Rj6gHODsL-7M2tbCg3ZCKzZ65h5KYTst4jCsuQEIToiRqhuPnGo75lzS5ZDRxJucYzH4m53eBNQY5WVfbY7nnjjhWlZxkPP=w838-h811-s-no-gm?authuser=0"32x32">
+	<style>
+			body {
+			  
+			  background-image: url("https://lh3.googleusercontent.com/pw/AP1GczNsJP4Y6WWgsgP1NdXHQ-2pFjy8sRDMuQS49SwAidQyvorYwXmEn5eZn7ziWdzwdh0DGjTJF7rBYmEOTINg1dQIYEHqDn_btzf7GpqfuYOm7oLtcG1fMa9bzHSgYcwVJh-BxNg-DZ0WiMvYQa4xsZXF=w838-h811-s-no-gm?authuser=0");
+			  background-size: cover;
+			  background-repeat: no-repeat;
+			  background-position: center;
+			}
+	</style>
 </head>
 
 <!-- right click loock-->
 <script type="text/javascript" src="right_click.js" async="async"></script> 
 
-<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 min-h-screen flex items-center justify-center">
+<body class=" min-h-screen flex items-center justify-center">
 
     <div class="bg-white p-8 rounded-3xl shadow-2xl w-96">
         <h2 class="text-3xl font-extrabold text-center text-pink-600 mb-6">Admin Login</h2>
@@ -44,7 +61,7 @@
 
     <script>
         
-		const scriptURL = 'https://script.google.com/macros/s/AKfycbzGCC4KrcHWwdi_V604_coMklXypg-OurY2pQj1wuCQxzRhNF42zHOIYPEpydSVukI/exec';  // 🔗 Replace with your login backend URL
+		const scriptURL = 'https://script.google.com/macros/s/AKfycbzfLjQ4y5HJhveNDBeNg3n-nQbjoazZlu3oUhJQFdVCBTWl_3SVu0UIhZ-hZIiOxDj6PA/exec';  // 🔗 Replace with your login backend URL
         const form = document.forms['login-form'];
         const message = document.getElementById('login-message');
         const loginButton = document.querySelector('.login-btn');
@@ -58,9 +75,14 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.result === "success") {
-						localStorage.setItem("loggedIn", "true");
+						/*localStorage.setItem("loggedIn", "true");
 						localStorage.setItem("loginTime", Date.now());// USER FOR SEASION TIME 
-						localStorage.setItem("email", form.Email.value); 
+						localStorage.setItem("email", form.Email.value); */
+						
+						localStorage.setItem("adminLoggedIn", "true");
+						localStorage.setItem("adminLoginTime", Date.now());
+						localStorage.setItem("adminEmail", form.Email.value);
+
 						
                         message.textContent = "✅ Login successful! Welcome.";
                         message.classList.remove('hidden', 'text-red-600');
@@ -89,3 +111,5 @@
     </script>
 </body>
 </html>
+
+<!-- https://lh3.googleusercontent.com/pw/AP1GczNsJP4Y6WWgsgP1NdXHQ-2pFjy8sRDMuQS49SwAidQyvorYwXmEn5eZn7ziWdzwdh0DGjTJF7rBYmEOTINg1dQIYEHqDn_btzf7GpqfuYOm7oLtcG1fMa9bzHSgYcwVJh-BxNg-DZ0WiMvYQa4xsZXF=w838-h811-s-no-gm?authuser=0-->
