@@ -139,7 +139,20 @@
 			</div>
 		</header>
 		
-		
+		<br>
+		<!-- SLIDESHOW SECTION -->
+		<script type="text/javascript" src="slide.js" async="async"></script>
+		<header class="relative w-full h-[40vh] md:h-[60vh] lg:h-[90vh]  p-3 bg-blue-100">
+			<div id="slideshow-wrapper" class="h-full w-full relative">
+				<div id="loader" class="flex items-center justify-center h-full">
+					<p class="text-white animate-pulse text-xl">Fetching Campus Gallery...</p>
+				</div>
+			</div>
+
+			<button onclick="changeSlide(-1)" class="absolute left-2 md:left-5 top-1/2 -translate-y-1/2 z-30 bg-black/30 hover:bg-white/40 text-white p-2 md:p-4 rounded-full transition-all">❮</button>
+			<button onclick="changeSlide(1)" class="absolute right-2 md:right-5 top-1/2 -translate-y-1/2 z-30 bg-black/30 hover:bg-white/40 text-white p-2 md:p-4 rounded-full transition-all">❯</button>
+		</header>
+		<br>
 		
 		<div id="content" class="content">
 			<h4 class="text-4xl font-bold text-black text-center">Welcome to the Home Page</h2>
@@ -167,7 +180,7 @@
 				{
 					contentDiv.innerHTML = `
 						<h4 class="text-4xl font-bold text-black text-center text-cyan-400">Welcome to the Home Page</h4>
-						<h3 class="text-6xl font-bold text-center text-red-600">***** the home section =>(V3.2.1) *****</h3>
+						<h3 class="text-6xl font-bold text-center text-red-600">***** the home section =>04.11.2025 *****</h3>
 						<h2 
 							class="text-3xl px-10 font-bold text-green-500">
 							Click on 'User Login' option and download the ppt and pdf your need.<br>
@@ -1078,7 +1091,7 @@
 					<p>Developed By : Swadesh Nandi</p>
 				</div>	
 				<div class="flex justify-center mt-2 px-3">
-					<P>Version :  3.2.1</P>
+					<P>Last update: 04.11.2025</P>
 				</div>
 				<div class="text-right">
 					<button class="btn bg-green-300 text-black text-2xl py-1 rounded-lg">
